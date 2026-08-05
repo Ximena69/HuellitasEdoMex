@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+
+Iniciar sesión | Huellitas EdoMex
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-6">
+
+                <div class="card shadow border-0">
+
+                    <div class="card-body p-5">
+
+                        <h1 class="fw-bold text-center mb-3">Iniciar sesión</h1>
+
+                        <p class="text-center text-muted mb-4">
+
+                            Accede para publicar mascotas o gestionar tus solicitudes de adopción.
+
+                        </p>
+
+
+
+                        {% if messages %}
+
+                            {% for message in messages %}
+
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+                                    {{ message }}
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                                </div>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+
+
+                        <form method="post" action="{% url 'login' %}">
+
+                            {% csrf_token %}
+
+                            <!-- Ajustado a "username" para coincidir con views.py -->
+
+                            <div class="mb-3">
+
+                                <label for="email" class="form-label fw-semibold">Correo Electrónico</label>
+
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" required>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label for="password" class="form-label fw-semibold">Contraseña</label>
+
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary w-100 btn-lg mt-3">
+
+                                Iniciar sesión
+
+                            </button>
+
+                        </form>
+
+
+
+                        <hr class="my-4">
+
+                        <p class="text-center mb-0">
+
+                            ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %} 

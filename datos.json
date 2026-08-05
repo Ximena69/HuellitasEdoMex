@@ -1,0 +1,1488 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-07-15T04:46:47.120Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "admin_sistema (Administrador del Sistema)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Nombre\", \"Apellido\", \"Rol en el Sistema\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-07-15T06:58:20.093Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "Liz_mtz (Responsable (Publicador))",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-07-17T00:00:52.896Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Toluca",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-07-17T00:00:59.292Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "Metepec",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-07-17T00:01:07.157Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Lerma",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-07-17T00:01:17.381Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "4",
+        "object_repr": "Zinacantepec",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-07-17T00:02:18.068Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "5",
+        "object_repr": "San Mateo Atenco",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-07-17T00:02:25.112Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "6",
+        "object_repr": "Almoloya de Juarez",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-07-17T00:02:34.433Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "7",
+        "object_repr": "Atlacomulco",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-07-17T00:02:44.881Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "8",
+        "object_repr": "Valle de Bravo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-07-17T00:02:48.743Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "9",
+        "object_repr": "Naucalpan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2026-07-17T00:02:58.767Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "10",
+        "object_repr": "Tlalnepantla",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2026-07-17T00:03:37.264Z",
+        "user": 5,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "gato",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tipo de Especie\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2026-07-17T00:03:48.541Z",
+        "user": 5,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "perro",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tipo de Especie\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2026-07-17T00:06:34.266Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "Luna (perro)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2026-07-17T00:06:57.435Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Luna (perro)",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2026-07-17T00:07:56.817Z",
+        "user": 5,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Fotografia object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2026-07-17T00:08:14.893Z",
+        "user": 5,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Fotografia object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2026-07-17T00:08:38.937Z",
+        "user": 5,
+        "content_type": 6,
+        "object_id": "2",
+        "object_repr": "gato",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2026-07-17T00:10:36.951Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Luna (perro)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Estado de Publicaci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2026-07-17T00:11:54.466Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "6",
+        "object_repr": "Armando (Interesado (Adoptante))",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2026-07-17T00:13:14.877Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "Fifi (perro)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2026-07-17T00:14:47.362Z",
+        "user": 5,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "Fotografia object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2026-07-17T01:00:09.238Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "9",
+        "object_repr": "Arturo (Interesado (Adoptante))",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2026-07-17T01:01:16.630Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "Borges (gato)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2026-07-17T01:02:02.242Z",
+        "user": 5,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "Fotografia object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2026-07-17T01:10:45.425Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "Canelo (perro)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Estado de Publicaci\\u00f3n\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 3,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 3,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 3,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 3,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 2,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 2,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 2,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 2,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add ubicacion",
+        "content_type": 10,
+        "codename": "add_ubicacion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change ubicacion",
+        "content_type": 10,
+        "codename": "change_ubicacion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete ubicacion",
+        "content_type": 10,
+        "codename": "delete_ubicacion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view ubicacion",
+        "content_type": 10,
+        "codename": "view_ubicacion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 11,
+        "codename": "add_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 11,
+        "codename": "change_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 11,
+        "codename": "delete_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 11,
+        "codename": "view_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add especie",
+        "content_type": 6,
+        "codename": "add_especie"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change especie",
+        "content_type": 6,
+        "codename": "change_especie"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete especie",
+        "content_type": 6,
+        "codename": "delete_especie"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view especie",
+        "content_type": 6,
+        "codename": "view_especie"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add mascota",
+        "content_type": 8,
+        "codename": "add_mascota"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change mascota",
+        "content_type": 8,
+        "codename": "change_mascota"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete mascota",
+        "content_type": 8,
+        "codename": "delete_mascota"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view mascota",
+        "content_type": 8,
+        "codename": "view_mascota"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add fotografia",
+        "content_type": 7,
+        "codename": "add_fotografia"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change fotografia",
+        "content_type": 7,
+        "codename": "change_fotografia"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete fotografia",
+        "content_type": 7,
+        "codename": "delete_fotografia"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view fotografia",
+        "content_type": 7,
+        "codename": "view_fotografia"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add solicitud adopcion",
+        "content_type": 9,
+        "codename": "add_solicitudadopcion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change solicitud adopcion",
+        "content_type": 9,
+        "codename": "change_solicitudadopcion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete solicitud adopcion",
+        "content_type": 9,
+        "codename": "delete_solicitudadopcion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view solicitud adopcion",
+        "content_type": 9,
+        "codename": "view_solicitudadopcion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "principal",
+        "model": "especie"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "principal",
+        "model": "fotografia"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "principal",
+        "model": "mascota"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "principal",
+        "model": "solicitudadopcion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "principal",
+        "model": "ubicacion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "principal",
+        "model": "usuario"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 1,
+    "fields": {
+        "municipio": "Toluca"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 2,
+    "fields": {
+        "municipio": "Metepec"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 3,
+    "fields": {
+        "municipio": "Lerma"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 4,
+    "fields": {
+        "municipio": "Zinacantepec"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 5,
+    "fields": {
+        "municipio": "San Mateo Atenco"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 6,
+    "fields": {
+        "municipio": "Almoloya de Juarez"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 7,
+    "fields": {
+        "municipio": "Atlacomulco"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 8,
+    "fields": {
+        "municipio": "Valle de Bravo"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 9,
+    "fields": {
+        "municipio": "Naucalpan"
+    }
+},
+{
+    "model": "principal.ubicacion",
+    "pk": 10,
+    "fields": {
+        "municipio": "Tlalnepantla"
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$X10wXjED6yflkOrPn1EzDU$QZef26dNdoMughf0btUS73/yeOagj9HPdNq+uVoVKYg=",
+        "last_login": "2026-07-17T05:41:09.385Z",
+        "is_superuser": true,
+        "username": "admin_sistema",
+        "email": "xime.mtz7u7@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-07-15T04:40:46Z",
+        "first_name": "Ximena",
+        "last_name": "Martinez Garduno",
+        "role": "ADMIN_SISTEMA",
+        "fecha_registro": "2026-07-15T04:40:47.549Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$YfFi1DWlCAkM5etJN2vxlI$dVnbMYSDMDmdoqf++A/hdrUAWoqPg+YJUYgHcYeJWr8=",
+        "last_login": "2026-07-15T07:45:58.302Z",
+        "is_superuser": false,
+        "username": "Liz_mtz",
+        "email": "martinez.garduno.lizeth.15@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-15T06:51:57Z",
+        "first_name": "Lizeth",
+        "last_name": "Martinez",
+        "role": "RESPONSABLE",
+        "fecha_registro": "2026-07-15T06:51:58.381Z",
+        "ultima_publicacion": "2025-12-29T04:53:49.287Z",
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$FbgynuFFjy2ZZOX5gMsPUh$wxh9Mf05vnpKK7dmHD/eZr/jxTOUsC7xxf6ZyXomYNY=",
+        "last_login": "2026-07-15T07:50:33.260Z",
+        "is_superuser": false,
+        "username": "xim_gar",
+        "email": "martinez.garduno.ximena04@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-15T07:46:49.124Z",
+        "first_name": "ximena",
+        "last_name": "Martinez",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-15T07:46:51.629Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$RcVSNhWyGUMVlRyguUbEcB$RLkDYq1Gxess/Vu0fDIslyiFi7qx6CBq8rOHVLMoY38=",
+        "last_login": "2026-07-16T23:40:41.363Z",
+        "is_superuser": false,
+        "username": "leilani Sibel",
+        "email": "leitremo56@hotmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-16T23:40:09.356Z",
+        "first_name": "LEILANI SIBEL",
+        "last_name": "TREJO MORAN",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-16T23:40:10.451Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$96DWJ0j6dnLT8NfCB0C9jw$fqbvZ2GjzPiNmTm/R0jZWUxiic5n1e8hMbxN6Zx99l8=",
+        "last_login": "2026-07-17T00:57:58.412Z",
+        "is_superuser": true,
+        "username": "Leilani",
+        "email": "leitremo56@hotmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-07-16T23:59:14.638Z",
+        "first_name": "",
+        "last_name": "",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-16T23:59:15.110Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$XsSPJgMlvF2NPKZnwB8G8W$Svn2hVlh7GJTrL6It2XN+6QrZJapC34/A1YA8JgWKLE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Armando",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T00:11:53.556Z",
+        "first_name": "",
+        "last_name": "",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-17T00:11:54.460Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$nj7zWHTtLrK21WUR9r1z1W$Zn/3LiLc72/fs83TK71Z6w1ckMSEDdE7QUgWNHZd1gM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Sibel29",
+        "email": "leitremo56@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T00:16:30.240Z",
+        "first_name": "Sibel",
+        "last_name": "Trejo",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-17T00:16:31.339Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$CM2TzWlmhsRQPfRgOtQiL9$ukUoA/JT/eytDTRS3yuiT9TYBZ4CwCJzuL8JmiK2eO4=",
+        "last_login": "2026-07-17T06:11:04.624Z",
+        "is_superuser": false,
+        "username": "Lucilu",
+        "email": "lumosa197812@hotmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T00:22:36.076Z",
+        "first_name": "Lucia",
+        "last_name": "Mor�n",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-17T00:22:36.979Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$cIK6lrhwkYsmlGpkGZ9PV6$9EWmcPyaqtmsoj130OVfSDoZ9d0BO0lBKx2s0+HyjgA=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Arturo",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T01:00:08.383Z",
+        "first_name": "",
+        "last_name": "",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-17T01:00:09.233Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$gm1WF7fLQqD3IZ64qBd9vi$cDkMyZHCCM3LhuUQLkJxdVEDv21D4/bT19q/46za7Jo=",
+        "last_login": "2026-07-17T04:09:04.985Z",
+        "is_superuser": false,
+        "username": "Gemelo",
+        "email": "armando10@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T02:23:43.770Z",
+        "first_name": "Armando",
+        "last_name": "Garc�a",
+        "role": "RESPONSABLE",
+        "fecha_registro": "2026-07-17T02:23:44.605Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$63CLUZvS3Ih0JWkqLhCtAs$vlRlM6g5OZk9W2DGZ9kuUFae3AZBinZZd2uWzboCwfw=",
+        "last_login": "2026-07-17T05:27:35.408Z",
+        "is_superuser": false,
+        "username": "Svein",
+        "email": "erik@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T02:26:52.410Z",
+        "first_name": "Erik",
+        "last_name": "Trejo",
+        "role": "RESPONSABLE",
+        "fecha_registro": "2026-07-17T02:26:53.365Z",
+        "ultima_publicacion": "2026-07-17T05:29:03.897Z",
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$iJLjC15Q434LZecI11v0uu$AfgNzUFP4vyyp+kLHj7e4n2wB85Gqd96C3PbsAqI4y0=",
+        "last_login": "2026-07-17T05:24:37.544Z",
+        "is_superuser": false,
+        "username": "Nat",
+        "email": "natalia10@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T02:29:16.539Z",
+        "first_name": "Natalia",
+        "last_name": "Gonzales",
+        "role": "RESPONSABLE",
+        "fecha_registro": "2026-07-17T02:29:17.596Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$97daHTd0BXQFAF9lriU6PK$BNSNNCOqMxYiPB6C+VCF3IdBg3Bigw2tbvxC4DMk+uE=",
+        "last_login": "2026-07-17T05:33:22.026Z",
+        "is_superuser": false,
+        "username": "Edwin17",
+        "email": "edwin17@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-17T05:26:02.447Z",
+        "first_name": "Edwin",
+        "last_name": "Bernal",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-17T05:26:03.538Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.usuario",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$H4fiYfVAjHLDbLzxib9Kqv$5NLzubsGBcw2+OrG0CcAdGGuUzCJ621IA8M2vP5xhb4=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "Ximena",
+        "email": "xime.mtz7u7@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-07-17T05:55:00.446Z",
+        "first_name": "",
+        "last_name": "",
+        "role": "INTERESADO",
+        "fecha_registro": "2026-07-17T05:55:00.930Z",
+        "ultima_publicacion": null,
+        "ubicacion": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "principal.especie",
+    "pk": 1,
+    "fields": {
+        "tipo_especie": "perro"
+    }
+},
+{
+    "model": "principal.especie",
+    "pk": 2,
+    "fields": {
+        "tipo_especie": "gato"
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 1,
+    "fields": {
+        "nombre": "Luna",
+        "especie": 1,
+        "responsable": 4,
+        "ubicacion": null,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2025-04-23",
+        "edad_aproximada": "1 a�o",
+        "sexo": "Hembra",
+        "fecha_publicacion": "2026-07-16T23:43:11.934Z",
+        "estado_publicacion": "Disponible",
+        "detalles": ""
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 2,
+    "fields": {
+        "nombre": "Luna",
+        "especie": 1,
+        "responsable": 2,
+        "ubicacion": null,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2025-07-10",
+        "edad_aproximada": "1 a�o",
+        "sexo": "Hembra",
+        "fecha_publicacion": "2026-07-17T00:06:34.263Z",
+        "estado_publicacion": "Disponible",
+        "detalles": "Juguetona, sociable con los dem�s perritos, es muy imperactiva, tiene mucha energia pero es amor de perrita"
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 3,
+    "fields": {
+        "nombre": "Fifi",
+        "especie": 1,
+        "responsable": 6,
+        "ubicacion": null,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2025-04-23",
+        "edad_aproximada": "1 a�o",
+        "sexo": "Hembra",
+        "fecha_publicacion": "2026-07-17T00:13:14.874Z",
+        "estado_publicacion": "Disponible",
+        "detalles": "Fifi es una mascota muy linda, se alegra con solo verte, le encantan los sobresitos pedigree, es un poco enojona, no tan sociable con los demas perros"
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 4,
+    "fields": {
+        "nombre": "Borges",
+        "especie": 2,
+        "responsable": 2,
+        "ubicacion": 2,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2025-07-10",
+        "edad_aproximada": "5 a�os",
+        "sexo": "Macho",
+        "fecha_publicacion": "2026-07-17T01:01:16.627Z",
+        "estado_publicacion": "Disponible",
+        "detalles": "Gatito jugueton, no muy sociables con las demas mascotas, necesita mucho cari�o y atencion"
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 5,
+    "fields": {
+        "nombre": "Canelo",
+        "especie": 1,
+        "responsable": 5,
+        "ubicacion": 6,
+        "esterilizado": false,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2022-10-23",
+        "edad_aproximada": "4 a�os",
+        "sexo": "Macho",
+        "fecha_publicacion": "2026-07-17T01:08:29.863Z",
+        "estado_publicacion": "Disponible",
+        "detalles": ""
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 6,
+    "fields": {
+        "nombre": "Abelito",
+        "especie": 1,
+        "responsable": 10,
+        "ubicacion": 6,
+        "esterilizado": false,
+        "vacunado": false,
+        "fecha_nacimiento_aproximada": "2026-04-01",
+        "edad_aproximada": "3 meses",
+        "sexo": "Macho",
+        "fecha_publicacion": "2026-07-17T02:25:42.571Z",
+        "estado_publicacion": "Disponible",
+        "detalles": ""
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 7,
+    "fields": {
+        "nombre": "Nico",
+        "especie": 2,
+        "responsable": 11,
+        "ubicacion": 4,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2018-10-10",
+        "edad_aproximada": "8 a�os",
+        "sexo": "Macho",
+        "fecha_publicacion": "2026-07-17T02:28:14.619Z",
+        "estado_publicacion": "Rechazada",
+        "detalles": ""
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 8,
+    "fields": {
+        "nombre": "Momo",
+        "especie": 1,
+        "responsable": 12,
+        "ubicacion": 8,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2021-07-10",
+        "edad_aproximada": "5 a�os",
+        "sexo": "Hembra",
+        "fecha_publicacion": "2026-07-17T02:30:27.887Z",
+        "estado_publicacion": "Adoptada",
+        "detalles": ""
+    }
+},
+{
+    "model": "principal.mascota",
+    "pk": 9,
+    "fields": {
+        "nombre": "Nicolas",
+        "especie": 2,
+        "responsable": 11,
+        "ubicacion": 6,
+        "esterilizado": true,
+        "vacunado": true,
+        "fecha_nacimiento_aproximada": "2018-10-10",
+        "edad_aproximada": "6 a�os",
+        "sexo": "Macho",
+        "fecha_publicacion": "2026-07-17T05:29:03.897Z",
+        "estado_publicacion": "Disponible",
+        "detalles": ""
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 1,
+    "fields": {
+        "mascota": 1,
+        "url_imagen": "mascotas/WhatsApp_Image_2026-05-27_at_12.19.53_AM.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 2,
+    "fields": {
+        "mascota": 1,
+        "url_imagen": "mascotas/WhatsApp_Image_2026-05-27_at_12.19.53_AM_1.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 3,
+    "fields": {
+        "mascota": 2,
+        "url_imagen": "mascotas/WhatsApp_Image_2026-06-03_at_6.26.42_PM_1.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 4,
+    "fields": {
+        "mascota": 3,
+        "url_imagen": "mascotas/WhatsApp_Image_2026-07-16_at_6.14.33_PM.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 5,
+    "fields": {
+        "mascota": 4,
+        "url_imagen": "mascotas/bor.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 6,
+    "fields": {
+        "mascota": 5,
+        "url_imagen": "mascotas/canelo.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 7,
+    "fields": {
+        "mascota": 6,
+        "url_imagen": "mascotas/abelito.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 8,
+    "fields": {
+        "mascota": 7,
+        "url_imagen": "mascotas/nico.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 9,
+    "fields": {
+        "mascota": 8,
+        "url_imagen": "mascotas/momo.jpeg"
+    }
+},
+{
+    "model": "principal.fotografia",
+    "pk": 10,
+    "fields": {
+        "mascota": 9,
+        "url_imagen": "mascotas/nicolas.jpeg"
+    }
+},
+{
+    "model": "principal.solicitudadopcion",
+    "pk": 3,
+    "fields": {
+        "interesado": 8,
+        "mascota": 8,
+        "telefono": null,
+        "correo": "lumosa197812@hotmail.com",
+        "vivienda": "Casa propia",
+        "patio": "S�",
+        "otras_mascotas": "S�",
+        "experiencia": "he tenido varias mascotas, todas cuidadas sanamente y con mucho amor",
+        "mensaje": "me gustaria tener una compa�era y prometo cuidarlo muy bien",
+        "fecha_solicitud": "2026-07-17T03:54:24.021Z",
+        "estado_solicitud": "Aceptada"
+    }
+}
+]

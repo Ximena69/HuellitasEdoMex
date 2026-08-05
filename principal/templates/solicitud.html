@@ -1,0 +1,406 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Enviar Solicitud de Adopción | Huellitas EdoMex
+{% endblock %}
+
+
+{% block content %}
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-8">
+
+
+<div class="card shadow border-0">
+
+<div class="card-body p-5">
+
+
+<h1 class="fw-bold text-center mb-3">
+Postularse para Adopción
+</h1>
+
+
+<p class="text-center text-muted mb-4">
+
+Estás enviando una solicitud para adoptar a:
+
+<strong class="text-primary">
+{{ mascota.nombre }}
+</strong>
+
+</p>
+
+
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-danger mb-3">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+
+
+
+
+<form method="post" action="{% url 'solicitud' %}?mascota_id={{ mascota.id_mascota }}">
+
+{% csrf_token %}
+
+
+
+
+
+<h4 class="fw-bold mb-3">
+Datos del adoptante
+</h4>
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Nombre completo
+</label>
+
+
+<input 
+type="text"
+class="form-control"
+value="{{ request.user.first_name }} {{ request.user.last_name }}"
+readonly>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+<div class="mb-4">
+
+
+<label class="form-label">
+
+Correo electrónico
+
+</label>
+
+
+<input
+
+type="email"
+
+name="correo"
+
+class="form-control"
+
+value="{{ request.user.email }}"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+<h4 class="fw-bold mb-3">
+
+Información del hogar
+
+</h4>
+
+
+
+
+<div class="row">
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Tipo de vivienda
+
+</label>
+
+
+<select 
+name="vivienda"
+class="form-select"
+required>
+
+
+<option value="">
+Selecciona una opción
+</option>
+
+
+<option>
+Casa propia
+</option>
+
+
+<option>
+Casa rentada
+</option>
+
+
+<option>
+Departamento
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+¿Cuenta con patio?
+
+</label>
+
+
+<select 
+name="patio"
+class="form-select"
+required>
+
+
+<option value="Sí">
+Sí
+</option>
+
+
+<option value="No">
+No
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="mb-4">
+
+
+<label class="form-label">
+
+¿Tiene otras mascotas?
+
+</label>
+
+
+<select
+
+name="otras_mascotas"
+
+class="form-select"
+
+required>
+
+
+<option value="Sí">
+Sí
+</option>
+
+
+<option value="No">
+No
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+<h4 class="fw-bold mb-3">
+
+Experiencia y compromiso
+
+</h4>
+
+
+
+
+
+<div class="mb-4">
+
+
+<label class="form-label">
+
+Experiencia con mascotas
+
+</label>
+
+
+<textarea
+
+name="experiencia"
+
+class="form-control"
+
+rows="4"
+
+placeholder="Cuéntanos si has tenido mascotas antes y cómo ha sido tu experiencia..."
+
+required></textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mb-4">
+
+
+<label class="form-label">
+
+¿Por qué deseas adoptar esta mascota?
+
+</label>
+
+
+<textarea
+
+name="mensaje"
+
+class="form-control"
+
+rows="5"
+
+placeholder="Explícale al responsable por qué deseas darle un hogar..."
+
+required></textarea>
+
+
+<div class="form-text">
+
+Tu respuesta será revisada antes de aprobar la adopción.
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<button 
+type="submit"
+class="btn btn-success w-100 btn-lg">
+
+
+Enviar Solicitud de Adopción
+
+
+</button>
+
+
+
+
+
+<a href="{% url 'adoptar' %}" 
+
+class="btn btn-light w-100 mt-2">
+
+
+Cancelar
+
+
+</a>
+
+
+
+
+
+</form>
+
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+{% endblock %}

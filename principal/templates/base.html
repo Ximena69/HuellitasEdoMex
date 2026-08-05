@@ -1,0 +1,303 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Huellitas EdoMex{% endblock %}</title>
+
+
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+    <!-- CSS propio -->
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+
+
+<body>
+
+
+
+    <!-- =========================
+
+          NAVBAR RESTAURADO
+
+    ========================== -->
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+
+        <div class="container">
+
+            
+
+            <!-- Logo original -->
+
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
+
+                <img src="{% static 'img/logo/logo.png' %}" alt="Logo" width="90" height="90" class="me-2">
+
+                Huellitas EdoMex
+
+            </a>
+
+
+
+            <!-- Botón móvil -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Abrir menú de navegación">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+
+            <!-- Menú y Contenedores Bootstrap Corregidos -->
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+
+                    </li>
+
+
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'adoptar' %}">Adoptar</a>
+
+                    </li>
+
+
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'publicar' %}">Publicar mascota</a>
+
+                    </li>
+
+
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'sobre' %}">Sobre nosotros</a>
+
+                    </li>
+
+
+
+                    <!-- Bloque de Autenticación Unificado -->
+
+                    {% if user.is_authenticated %}
+
+
+
+                        {% if user.role == "INTERESADO" %}
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="{% url 'panel_interesado' %}">
+
+                                    Panel Interesado
+
+                                </a>
+
+                            </li>
+
+                        {% endif %}
+
+
+
+                        {% if user.role == "RESPONSABLE" %}
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="{% url 'panel_responsable' %}">
+
+                                    Panel Responsable
+
+                                </a>
+
+                            </li>
+
+                        {% endif %}
+
+
+
+                        {% if user.role == "ADMIN_SISTEMA" %}
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="{% url 'panel_admin' %}">
+
+                                    Admin (Sistema)
+
+                                </a>
+
+                            </li>
+
+                        {% endif %}
+
+
+
+                        <li class="nav-item ms-lg-3">
+
+                            <a class="nav-link text-danger fw-semibold" href="{% url 'logout' %}">
+
+                                Cerrar sesión ({{ user.username }})
+
+                            </a>
+
+                        </li>
+
+
+
+                    {% else %}
+
+
+
+                        <li class="nav-item ms-lg-3">
+
+                            <a class="nav-link" href="{% url 'login' %}">
+
+                                Iniciar sesión
+
+                            </a>
+
+                        </li>
+
+
+
+                        <li class="nav-item ms-lg-2">
+
+                            <a class="btn btn-primary" href="{% url 'registro' %}">
+
+                                Registrarse
+
+                            </a>
+
+                        </li>
+
+
+
+                    {% endif %}
+
+
+
+                </ul>
+
+            </div>
+
+
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+
+          CONTENIDO DINÁMICO
+
+    ========================== -->
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+
+    <!-- =========================
+
+          FOOTER
+
+    ========================== -->
+
+    <footer class="footer mt-5">
+
+        <div class="container py-4">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <h5>Huellitas EdoMex</h5>
+
+                    <p>
+
+                        Huellitas EdoMex es una plataforma intermediaria que conecta a personas interesadas en adoptar con quienes buscan un hogar responsable para sus mascotas. No somos refugio ni albergue y no resguardamos animales.
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 text-md-end">
+
+                    <a href="{% url 'terminos' %}" aria-label="Términos y condiciones">Términos y Condiciones</a> | 
+
+                    <a href="{% url 'privacidad' %}" aria-label="Aviso de privacidad">Aviso de Privacidad</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Bootstrap JS Bundle -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!-- JavaScript propio -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+
+
+</body>
+
+</html>

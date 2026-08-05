@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-danger mb-2"><i class="bi bi-shield-lock-fill"></i> Panel de Administración del Sistema</h1>
+        <p class="lead text-muted">Módulo de Moderación y Auditoría de Contenido de Publicaciones.</p>
+        <div class="mx-auto" style="width: 80px; height: 4px; background-color: #dc3545; border-radius: 2px;"></div>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-5 rounded-3">
+        <div class="card-header bg-dark text-white py-3">
+            <h4 class="mb-0 fw-bold"><i class="bi bi-grid-3x3-gap-fill me-2"></i> Publicaciones en el Sistema</h4>
+        </div>
+        <div class="card-body p-4 bg-light">
+            <div class="row g-4">
+                {% for mascota in todas_mascotas %}
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-3">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="fw-bold text-primary mb-0">{{ mascota.nombre }}</h4>
+                                    <span class="badge {% if mascota.estado_publicacion == 'Disponible' %}bg-success{% elif mascota.estado_publicacion == 'Adoptada' %}bg-secondary{% else %}bg-warning text-dark{% endif %} px-2 py-2">
+                                        {{ mascota.get_estado_publicacion_display }}
+                                    </span>
+                                </div>
+                                <p class="mb-1 text-muted"><strong>Municipio:</strong> {{ mascota.responsable.ubicacion.municipio|default:"Toluca" }}</p>
+                                <p class="mb-3 text-muted"><strong>Responsable:</strong> {{ mascota.responsable.username }}</p>
+                                
+                                <div class="d-grid mt-auto">
+                                    <a href="{% url 'detalle' %}?id={{ mascota.id_mascota }}" 
+                                       class="btn btn-outline-secondary btn-sm fw-semibold">
+                                        <i class="bi bi-eye-fill"></i> Auditar Ficha Técnica
+                                    </a>
+                                    
+                                    {% if mascota.estado_publicacion == "Pendiente" %}
+                                        <a href="{% url 'aprobar_mascota' mascota.id_mascota %}" 
+                                           class="btn btn-success btn-sm mt-2">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            Aprobar publicación
+                                        </a>
+                                        
+                                        <a href="{% url 'rechazar_mascota' mascota.id_mascota %}" 
+                                           class="btn btn-danger btn-sm mt-2">
+                                           <i class="bi bi-x-circle-fill"></i>
+                                           Rechazar publicación
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+<div class="card shadow-sm border-0 rounded-3">
+    <div class="card-header bg-warning text-dark py-3">
+        <h4 class="mb-0 fw-bold">
+            <i class="bi bi-person-x-fill me-2"></i>
+            Usuarios inactivos (más de 180 días sin publicar)
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        {% if usuarios_inactivos %}
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Última publicación</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for usuario in usuarios_inactivos %}
+
+                        <tr>
+
+                            <td>
+                                {{ usuario.first_name }} {{ usuario.last_name }}
+                            </td>
+
+                            <td>
+                                {{ usuario.username }}
+                            </td>
+
+                            <td>
+                                {{ usuario.ultima_publicacion|date:"d/m/Y" }}
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'eliminar_usuario_inactivo' usuario.id %}"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('¿Eliminar este usuario por inactividad?');">
+
+                                    <i class="bi bi-trash-fill"></i>
+                                    Eliminar
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <p class="text-muted mb-0">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                No existen usuarios inactivos.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+<hr class="my-5">
+
+<div class="card shadow-sm border-0 rounded-3">
+
+    <div class="card-header bg-success text-white py-3">
+        <h4 class="mb-0 fw-bold">
+            <i class="bi bi-heart-fill me-2"></i>
+            Historial de adopciones concretadas
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        {% if historial_adopciones %}
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Adoptante</th>
+                        <th>Responsable</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for adopcion in historial_adopciones %}
+
+                    <tr>
+
+                        <td>
+                            {{ adopcion.mascota.nombre }}
+                        </td>
+
+                        <td>
+                            {{ adopcion.interesado.first_name }}
+                            {{ adopcion.interesado.last_name }}
+                        </td>
+
+                        <td>
+                            {{ adopcion.mascota.responsable.first_name }}
+                            {{ adopcion.mascota.responsable.last_name }}
+                        </td>
+
+                        <td>
+                            {{ adopcion.fecha_solicitud|date:"d/m/Y" }}
+                        </td>
+
+                        <td>
+                            <span class="badge bg-success">
+                                Concretada
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p class="text-muted mb-0">
+
+            <i class="bi bi-info-circle-fill"></i>
+
+            Todavía no existen adopciones concretadas.
+
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="mb-4">
+        <h1 class="fw-bold text-success"><i class="bi bi-person-heart"></i> Panel del Interesado</h1>
+        <p class="text-muted">Historial de solicitudes y publicaciones de: <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></p>
+        <hr>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} mb-3" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- LISTADO DE POSTULACIONES -->
+    <h3 class="fw-bold mb-4"><i class="bi bi-file-earmark-text-fill"></i> Mis solicitudes de adopción hechas</h3>
+    <div class="row g-4 mb-5">
+        {% for solicitud in solicitudes %}
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm border-0 rounded-3 bg-white h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold text-primary mb-0">{{ solicitud.mascota.nombre }}</h4>
+                        <span class="badge {% if solicitud.estado_solicitud == 'Aceptada' %}bg-success{% elif solicitud.estado_solicitud == 'Rechazada' %}bg-danger{% else %}bg-warning text-dark{% endif %} px-3 py-2 fs-6">
+                            {{ solicitud.estado_solicitud }}
+                        </span>
+                    </div>
+                    
+                    <p class="mb-2 text-muted"><strong>Mensaje enviado:</strong></p>
+                    <div class="p-3 bg-light rounded-3 mb-3 text-secondary">
+                        "{{ solicitud.mensaje }}"
+                    </div>
+                    
+                    <p class="small text-muted mb-3"><i class="bi bi-clock-history"></i> Enviada el: {{ solicitud.fecha_solicitud|date:"d/m/Y a las H:i" }}</p>
+                    
+                    <div class="mt-auto pt-2">
+                        {% if solicitud.estado_solicitud == 'Pendiente' %}
+                            <a href="{% url 'cancelar_solicitud' solicitud.id_solicitud %}" class="btn btn-outline-danger w-100 fw-bold">
+                                <i class="bi bi-trash3-fill me-1"></i> Cancelar Solicitud
+                            </a>
+                        {% else %}
+                            <button class="btn btn-secondary w-100 fw-bold" disabled>
+                                <i class="bi bi-lock-fill me-1"></i> No se puede cancelar (Procesada)
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center py-4 bg-light rounded-3 mb-3">
+                <p class="text-muted mb-0">Aún no has enviado ninguna solicitud de adopción.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr class="my-5">
+
+    <!-- SECCIÓN CRUZADA: MASCOTAS QUE EL USUARIO REGISTRÓ -->
+    <h3 class="fw-bold mb-4"><i class="bi bi-megaphone-fill"></i> Mis mascotas publicadas en Huellitas</h3>
+    <div class="row g-4">
+        {% for mascota in mis_mascotas %}
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm border-0 rounded-3 bg-white h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold text-dark mb-0">{{ mascota.nombre }}</h4>
+                        <span class="badge {% if mascota.estado_publicacion == 'Disponible' %}bg-success{% elif mascota.estado_publicacion == 'Adoptada' %}bg-secondary{% else %}bg-warning text-dark{% endif %} px-2 py-1">
+                            {{ mascota.get_estado_publicacion_display }}
+                        </span>
+                    </div>
+                    <p class="small text-muted mb-3"><i class="bi bi-calendar-check"></i> Registrado: {{ mascota.fecha_publicacion|date:"d/m/Y" }}</p>
+                    
+                    <div class="p-2 bg-light rounded text-center small text-secondary">
+                        {% if mascota.estado_publicacion == 'Pendiente' %}
+                            <span class="text-warning fw-bold"><i class="bi bi-hourglass-split"></i> Esperando aprobación del Administrador</span>
+                        {% elif mascota.estado_publicacion == 'Disponible' %}
+                            <span class="text-success fw-bold"><i class="bi bi-check-circle-fill"></i> Visible en el catálogo general</span>
+                        {% else %}
+                            <span class="text-muted fw-bold"><i class="bi bi-house-heart-fill"></i> Mascota Adoptada</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center py-4 bg-light rounded-3">
+                <p class="text-muted mb-0">No has publicado ninguna mascota en adopción todavía.</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

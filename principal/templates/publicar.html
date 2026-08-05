@@ -1,0 +1,334 @@
+ {% extends 'base.html' %}
+
+
+
+{% block title %}
+
+Publicar mascota | Huellitas EdoMex
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card shadow border-0">
+
+                    <div class="card-body p-5">
+
+                        <h1 class="fw-bold mb-3">Publicar una mascota</h1>
+
+                        <div class="alert alert-warning">
+
+                             Las publicaciones serán revisadas por un administrador antes de ser visibles para otros usuarios.
+
+                        </div>
+
+
+
+                        {% if messages %}
+
+                            {% for message in messages %}
+
+                                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} mb-3" role="alert">
+
+                                    {{ message }}
+
+                                </div>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+
+
+                        <p class="text-muted mb-4">
+
+                            Completa la información de la mascota para ayudarle a encontrar un hogar responsable. Huellitas EdoMex actúa únicamente como plataforma intermediaria.
+
+                        </p>
+
+
+
+                        <form id="formPublicar" method="post" action="{% url 'publicar' %}" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+
+
+
+                            <div class="mb-3">
+
+                                <label for="nombre" class="form-label">Nombre de la mascota</label>
+
+                                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ejemplo: Max" maxlength="50" required>
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label for="especie" class="form-label">Tipo de mascota (Especie)</label>
+
+                                    <select name="especie" id="especie" class="form-select" required>
+
+                                        <option value="" disabled selected>Selecciona una opción</option>
+
+                                        <option value="perro">Perro</option>
+
+                                        <option value="gato">Gato</option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label for="sexo" class="form-label">Sexo</label>
+
+                                    <select name="sexo" id="sexo" class="form-select" required>
+
+                                        <option value="" disabled selected>Selecciona una opción</option>
+
+                                        <option value="Macho">Macho</option>
+
+                                        <option value="Hembra">Hembra</option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label for="edad_aproximada" class="form-label">Edad aproximada</label>
+
+                                    <input type="text" name="edad_aproximada" id="edad_aproximada" class="form-control" readonly>
+
+                                </div>
+
+
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label for="fecha_nacimiento_aproximada" class="form-label">Fecha de nacimiento aproximada</label>
+
+                                    <input type="date" name="fecha_nacimiento_aproximada" id="fecha_nacimiento_aproximada" class="form-control" required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                
+                                <label for="ubicacion" class="form-label">Municipio donde se encuentra la mascota</label>
+                                
+                                <select name="ubicacion" id="ubicacion" class="form-select" required>
+                                    <option value="" disabled selected>
+                                        Selecciona un municipio
+                                    </option>
+                                    
+                                    {% for municipio in municipios %}
+                                    
+                                        <option value="{{ municipio.id_ubicacion }}">
+                                            {{ municipio.municipio }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+
+                            <div class="mb-3">
+
+                                <label for="vacunado" class="form-label">¿Está vacunado?</label>
+
+                                <select name="vacunado" id="vacunado" class="form-select" required>
+
+                                    <option value="" disabled selected>Selecciona una opción</option>
+
+                                    <option value="True">Sí</option>
+
+                                    <option value="False">No</option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="mb-3">
+
+                                <label for="esterilizado" class="form-label">¿Está esterilizado?</label>
+
+                                <select name="esterilizado" id="esterilizado" class="form-select" required>
+
+                                    <option value="" disabled selected>Selecciona una opción</option>
+
+                                    <option value="True">Sí</option>
+
+                                    <option value="False">No</option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="mb-4">
+
+                                <label for="fotografia" class="form-label">Fotografía de la mascota</label>
+
+                                <input type="file" name="fotografia" id="fotografia" class="form-control" accept="image/*" required>
+                                <div class="mt-3 text-center"> <img id="previewImagen" src="" alt="Vista previa" class="img-fluid rounded shadow" style="max-width:300px; display:none;">
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-check mb-3">
+
+                                <input class="form-check-input" type="checkbox" id="informacion" required>
+
+                                <label class="form-check-label" for="informacion">
+
+                                    Declaro que la información proporcionada es verídica.
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="form-check mb-4">
+
+                                <input class="form-check-input" type="checkbox" id="terminos" required>
+
+                                <label class="form-check-label" for="terminos">
+
+                                    Acepto los Términos y Condiciones y entiendo que Huellitas EdoMex únicamente facilita el contacto entre las partes.
+
+                                </label>
+
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Publicar mascota</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const fechaNacimiento = document.getElementById("fecha_nacimiento_aproximada");
+    const edad = document.getElementById("edad_aproximada");
+
+    fechaNacimiento.addEventListener("change", function () {
+
+        if (!this.value) {
+            edad.value = "";
+            return;
+        }
+
+        const nacimiento = new Date(this.value);
+        const hoy = new Date();
+
+        let años = hoy.getFullYear() - nacimiento.getFullYear();
+
+        if (
+            hoy.getMonth() < nacimiento.getMonth() ||
+            (hoy.getMonth() === nacimiento.getMonth() &&
+             hoy.getDate() < nacimiento.getDate())
+        ) {
+            años--;
+        }
+
+        if (años >= 1) {
+
+            if (años === 1) {
+                edad.value = "1 año";
+            } else {
+                edad.value = años + " años";
+            }
+
+        } else {
+
+            let meses =
+                (hoy.getFullYear() - nacimiento.getFullYear()) * 12 +
+                (hoy.getMonth() - nacimiento.getMonth());
+
+            if (hoy.getDate() < nacimiento.getDate()) {
+                meses--;
+            }
+
+            if (meses <= 1) {
+                edad.value = "1 mes";
+            } else {
+                edad.value = meses + " meses";
+            }
+        }
+
+    });
+
+    const inputFoto = document.getElementById("fotografia");
+const preview = document.getElementById("previewImagen");
+
+inputFoto.addEventListener("change", function () {
+
+    const archivo = this.files[0];
+
+    if (archivo) {
+
+        const lector = new FileReader();
+
+        lector.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+        };
+
+        lector.readAsDataURL(archivo);
+
+    } else {
+
+        preview.src = "";
+        preview.style.display = "none";
+
+    }
+
+});
+
+});
+</script>
+
+{% endblock %} 

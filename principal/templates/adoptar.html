@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}
+
+Catálogo de Adopciones | Huellitas EdoMex
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="py-5 bg-gradient bg-light border-bottom">
+
+    <div class="container text-center py-3">
+
+        <h1 class="display-4 fw-bold text-primary mb-3">Encuentra a tu próximo compañero</h1>
+
+        <p class="text-muted max-w-600 mx-auto fs-5">
+
+            Explora las mascotas publicadas por usuarios responsables y dales una segunda oportunidad en un hogar seguro.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="py-4 mt-n4">
+
+    <div class="container">
+
+        <div class="card shadow border-0 rounded-4 p-4 bg-white">
+
+            <form method="get" action="{% url 'adoptar' %}">
+
+                <div class="row g-3 align-items-end">
+
+                    <div class="col-lg-4">
+
+                        <label class="form-label fw-semibold text-secondary"><i class="bi bi-search me-1"></i> Nombre de la mascota</label>
+
+                        <input type="text" name="nombre" class="form-control form-control-lg" placeholder="Ej. Max, Luna..." value="{{ request.GET.nombre }}">
+
+                    </div>
+
+
+
+                    <div class="col-lg-3">
+
+                        <label class="form-label fw-semibold text-secondary"><i class="bi bi-tags-fill me-1"></i> Especie</label>
+
+                        <select name="especie" class="form-select form-control-lg">
+
+                            <option value="">Todas las especies</option>
+
+                            <option value="perro" {% if request.GET.especie == 'perro' %}selected{% endif %}>Perro</option>
+
+                            <option value="gato" {% if request.GET.especie == 'gato' %}selected{% endif %}>Gato</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="col-lg-3">
+
+                        <label class="form-label fw-semibold text-secondary"><i class="bi bi-geo-alt-fill me-1"></i> Municipio</label>
+
+                        <select name="ubicacion" class="form-select form-control-lg">
+
+                            <option value="">Todo el Estado de México</option>
+
+                            {% for u in ubicaciones %}
+
+                                <option value="{{ u.id_ubicacion }}" {% if request.GET.ubicacion == u.id_ubicacion|stringformat:"s" %}selected{% endif %}>
+
+                                    {{ u.municipio }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="col-lg-2 d-grid">
+
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">
+
+                            Filtrar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            {% for mascota in mascotas %}
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover transition">
+
+                        <div class="position-relative">
+
+                            {% if mascota.fotos.all %}
+
+                                <img src="{{ mascota.fotos.first.url_imagen.url }}" class="w-100" alt="{{ mascota.nombre }}" style="height: 220px; object-fit: cover;">
+
+                            {% else %}
+
+                                <img src="{% static 'img/mascotas/bruce.jpg' %}" class="w-100" alt="Defecto" style="height: 220px; object-fit: cover;">
+
+                            {% endif %}
+
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-success px-3 py-2 shadow-sm">
+
+                                {{ mascota.estado_publicacion }}
+
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="card-body p-4 d-flex flex-column">
+
+                            <h4 class="card-title fw-bold text-dark mb-2">{{ mascota.nombre }}</h4>
+
+                            <div class="small text-muted mb-3">
+
+                                <p class="mb-1"><i class="bi bi-gender-ambiguous me-1 text-primary"></i> <strong>Sexo:</strong> {{ mascota.sexo }}</p>
+
+                                <p class="mb-1"><i class="bi bi-calendar3 me-1 text-success"></i> <strong>Edad:</strong> {{ mascota.edad_aproximada }}</p>
+
+                                <p class="mb-0"><i class="bi bi-geo-alt-fill me-1 text-danger"></i><strong>Ubicación:</strong> {{ mascota.ubicacion.municipio|default:"Sin ubicación" }}
+</p>
+
+                            </div>
+
+                           
+
+                            <hr class="mt-0 line-dashed">
+
+                            <p class="small text-secondary text-truncate mb-3">Responsable: {{ mascota.responsable.first_name }}</p>
+
+                           
+
+                            <a href="{% url 'detalle' %}?id={{ mascota.id_mascota }}" class="btn btn-outline-primary w-100 mt-auto fw-bold py-2 rounded-3">
+
+                                <i class="bi bi-eye-fill me-1"></i> Ver detalles
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center py-5">
+
+                    <div class="py-4">
+
+                        <i class="bi bi-emoji-frown display-1 text-muted"></i>
+
+                        <p class="text-muted fs-4 mt-3">No encontramos mascotas con esos filtros en este momento.</p>
+
+                        <a href="{% url 'adoptar' %}" class="btn btn-primary mt-2">Ver todo el catálogo</a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %} 
+

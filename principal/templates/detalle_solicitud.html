@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">
+            <i class="bi bi-file-earmark-text-fill"></i>
+            Solicitud de Adopción
+        </h1>
+        <p class="text-muted">
+            Revisa cuidadosamente la información antes de aceptar o rechazar la solicitud.
+        </p>
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                {{ solicitud.mascota.nombre }}
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <!-- Información de la mascota -->
+<h4 class="fw-bold text-primary mb-3">
+    <i class="bi bi-heart-fill"></i> Información de la mascota
+</h4>
+
+<div class="row">
+
+    <div class="col-md-6 mb-3">
+        <strong>Nombre:</strong><br>
+        {{ solicitud.mascota.nombre }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Especie:</strong><br>
+        {{ solicitud.mascota.especie }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Sexo:</strong><br>
+        {{ solicitud.mascota.sexo }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Edad aproximada:</strong><br>
+        {{ solicitud.mascota.edad_aproximada }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Ubicación:</strong><br>
+        {{ solicitud.mascota.ubicacion.municipio }}
+    </div>
+
+</div>
+
+<hr class="my-4">
+
+<!-- Información del interesado -->
+<h4 class="fw-bold text-success mb-3">
+    <i class="bi bi-person-fill"></i> Información del interesado
+</h4>
+
+<div class="row">
+
+    <div class="col-md-6 mb-3">
+        <strong>Nombre completo:</strong><br>
+        {{ solicitud.interesado.first_name }}
+        {{ solicitud.interesado.last_name }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Nombre de usuario:</strong><br>
+        {{ solicitud.interesado.username }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Correo electrónico:</strong><br>
+        {{ solicitud.correo }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Fecha de la solicitud:</strong><br>
+        {{ solicitud.fecha_solicitud|date:"d/m/Y H:i" }}
+    </div>
+
+</div>
+
+<hr class="my-4">
+
+<!-- Información del hogar -->
+<h4 class="fw-bold text-warning mb-3">
+    <i class="bi bi-house-door-fill"></i> Información del hogar
+</h4>
+
+<div class="row">
+
+    <div class="col-md-6 mb-3">
+        <strong>Tipo de vivienda:</strong><br>
+        {{ solicitud.vivienda }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>¿Cuenta con patio?</strong><br>
+        {{ solicitud.patio }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>¿Tiene otras mascotas?</strong><br>
+        {{ solicitud.otras_mascotas }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <strong>Experiencia con mascotas:</strong><br>
+        {{ solicitud.experiencia }}
+    </div>
+
+</div>
+
+<hr class="my-4">
+
+<!-- Mensaje del interesado -->
+<h4 class="fw-bold text-info mb-3">
+    <i class="bi bi-chat-left-text-fill"></i> Motivo de la adopción
+</h4>
+
+<div class="card bg-light border-0 mb-4">
+    <div class="card-body">
+        <p class="mb-0" style="white-space: pre-line;">
+            {{ solicitud.mensaje }}
+        </p>
+    </div>
+</div>
+
+<hr class="my-4">
+
+<!-- Estado de la solicitud -->
+<h4 class="fw-bold mb-3">
+    <i class="bi bi-clipboard-check-fill"></i>
+    Estado de la solicitud
+</h4>
+
+<p>
+    {% if solicitud.estado_solicitud == 'Pendiente' %}
+
+        <span class="badge bg-warning text-dark fs-6">
+            Pendiente
+        </span>
+
+    {% elif solicitud.estado_solicitud == 'Aceptada' %}
+
+        <span class="badge bg-success fs-6">
+            Aceptada
+        </span>
+
+    {% else %}
+
+        <span class="badge bg-danger fs-6">
+            Rechazada
+        </span>
+
+    {% endif %}
+</p>
+
+{% if solicitud.estado_solicitud == 'Pendiente' %}
+
+<div class="mt-4 d-flex gap-2">
+
+    <a href="{% url 'aceptar_solicitud' solicitud.id_solicitud %}"
+       class="btn btn-success">
+
+        <i class="bi bi-check-circle-fill"></i>
+        Aceptar solicitud
+
+    </a>
+
+    <a href="{% url 'rechazar_solicitud' solicitud.id_solicitud %}"
+       class="btn btn-danger">
+
+        <i class="bi bi-x-circle-fill"></i>
+        Rechazar solicitud
+
+    </a>
+
+</div>
+
+{% endif %}
+
+<div class="mt-4">
+    <a href="{% url 'panel_responsable' %}"
+       class="btn btn-outline-secondary">
+
+        <i class="bi bi-arrow-left"></i>
+        Volver al panel
+
+    </a>
+</div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

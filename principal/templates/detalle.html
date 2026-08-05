@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}
+
+{{ mascota.nombre }} | Huellitas EdoMex
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- Imagen Dinámica procesada por Pillow -->
+
+            <div class="col-lg-6">
+
+                {% if mascota.fotos.all %}
+
+                    <img src="{{ mascota.fotos.first.url_imagen.url }}" class="img-fluid rounded shadow w-100" alt="{{ mascota.nombre }}" style="max-height: 450px; object-fit: cover;">
+
+                {% else %}
+
+                    <img src="{% static 'img/mascotas/bruce.jpg' %}" class="img-fluid rounded shadow w-100" alt="Por defecto">
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- Ficha Técnica -->
+
+            <div class="col-lg-6">
+
+                <span class="badge {% if mascota.estado_publicacion == 'Disponible' %}bg-success{% else %}2 bg-secondary{% endif %} mb-3">
+
+                    {{ mascota.estado_publicacion }}
+
+                </span>
+
+                
+
+                <h1 class="fw-bold mb-3">{{ mascota.nombre }}</h1>
+
+                <p class="text-muted fs-5">
+
+                    {{ mascota.especie.get_tipo_especie_display }} • {{ intensity }} • {{ mascota.sexo }} • {{ mascota.edad_aproximada }}
+
+                </p>
+
+                <hr>
+
+
+
+                <div class="row text-center text-md-start">
+
+                    <div class="col-6 mb-3">
+
+                        <strong>Sexo</strong><br>
+
+                        <span class="text-muted">{{ mascota.sexo }}</span>
+
+                    </div>
+
+                <div class="col-6 mb-3">
+                    <strong>Ubicación</strong><br>
+                    <span class="text-muted">
+                        {{ mascota.ubicacion.municipio }}
+                    </span>
+                </div>
+
+                    <div class="col-6 mb-3">
+
+                        <strong>Edad aproximada</strong><br>
+
+                        <span class="text-muted">{{ mascota.edad_aproximada }}</span>
+
+                    </div>
+
+                    <div class="col-6 mb-3">
+
+                        <strong>Nacimiento Estimado</strong><br>
+
+                        <span class="text-muted">{{ mascota.fecha_nacimiento_aproximada|date:"d/m/Y" }}</span>
+
+                    </div>
+
+                    <div class="col-6 mb-3">
+
+                        <strong>Fecha de publicación</strong><br>
+
+                        <span class="text-muted">{{ mascota.fecha_publicacion|date:"d/m/Y" }}</span>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+
+
+                <h5>Responsable de la publicación:</h5>
+
+                <p class="text-primary fw-semibold fs-5">
+
+                    {{ mascota.responsable.first_name }} {{ mascota.responsable.last_name }}
+
+                </p>
+
+
+
+                <!-- Botón de Solicitud vinculando el ID de la mascota -->
+
+                {% if request.user.is_authenticated and request.user.role == 'INTERESADO' %}
+                <a href="{% url 'solicitud' %}?mascota_id={{ mascota.id_mascota }}" 
+                   class="btn btn-primary btn-lg mt-3">
+                   
+                   <i class="bi bi-heart-fill"></i>
+                   Solicitar adopción de {{ mascota.nombre }}
+                </a>
+                
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="pb-5">
+
+    <div class="container">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body p-4">
+
+                <h3 class="mb-3 fw-bold">Situación médica y de salud</h3>
+
+                <p class="fs-5">
+
+                    <strong>¿Está vacunado?:</strong> {% if mascota.vacunado %}Sí cuenta con esquema completo.{% else %}No registrado.{% endif %}<br>
+
+                    <strong>¿Está esterilizado?:</strong> {% if mascota.esterilizado %}Sí se encuentra esterilizado.{% else %}No registrado.{% endif %}
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %} 
