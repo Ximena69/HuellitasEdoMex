@@ -1,1 +1,1 @@
-web: gunicorn config.wsgi:application --access-logfile -
+web: gunicorn config.wsgi:application
