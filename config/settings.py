@@ -121,11 +121,15 @@ LOGIN_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+
+STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATICFILES_DIRS = [
 
-BASE_DIR / "principal" / "static",
+STATICFILES_DIRS = [
+    BASE_DIR / "principal" / "static",
 ]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
