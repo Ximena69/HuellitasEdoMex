@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     "default": dj_database_url.config(
-        default="mysql://root:123456@localhost:3306/huellitas_db"
+        conn_max_age=600
     )
 }
 
