@@ -17,7 +17,9 @@ from django.core.exceptions import ValidationError
 # =========================
 
 def inicio(request):
-    mascotas_cercanas = Mascota.objects.filter(estado_publicacion='Disponible').order_by('-fecha_publicacion')[:6]
+    mascotas_cercanas = Mascota.objects.filter(
+        estado_publicacion='Disponible'
+    ).prefetch_related('fotos').order_by('-fecha_publicacion')
     
     if request.user.is_authenticated and request.user.ubicacion:
         mascotas_usuario = Mascota.objects.filter(
@@ -36,7 +38,9 @@ def inicio(request):
     })
 
 def adoptar(request):
-    mascotas = Mascota.objects.filter(estado_publicacion='Disponible').order_by('-fecha_publicacion')
+    mascotas = Mascota.objects.filter(
+        estado_publicacion='Disponible'
+    ).prefetch_related('fotos').order_by('-fecha_publicacion')
 
     query_nombre = request.GET.get('nombre')
     query_especie = request.GET.get('especie')
