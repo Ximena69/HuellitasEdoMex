@@ -1,0 +1,538 @@
+﻿[
+{
+  "model": "principal.ubicacion",
+  "pk": 1,
+  "fields": {
+    "municipio": "Toluca"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 2,
+  "fields": {
+    "municipio": "Metepec"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 3,
+  "fields": {
+    "municipio": "Lerma"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 4,
+  "fields": {
+    "municipio": "Zinacantepec"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 5,
+  "fields": {
+    "municipio": "San Mateo Atenco"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 6,
+  "fields": {
+    "municipio": "Almoloya de Juarez"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 7,
+  "fields": {
+    "municipio": "Atlacomulco"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 8,
+  "fields": {
+    "municipio": "Valle de Bravo"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 9,
+  "fields": {
+    "municipio": "Naucalpan"
+  }
+},
+{
+  "model": "principal.ubicacion",
+  "pk": 10,
+  "fields": {
+    "municipio": "Tlalnepantla"
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$52ClEBXNOZ4iZjzlWTY9hk$yqZ2WCmsriMIIaYRRA4zqYlmsX4XzaJ6K/RzMySeQiE=",
+    "last_login": "2026-07-31T07:42:06.660Z",
+    "is_superuser": true,
+    "username": "admin_sistema",
+    "email": "xime.mtz7u7@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-15T04:40:46Z",
+    "first_name": "Ximena",
+    "last_name": "Martinez Garduno",
+    "role": "ADMIN_SISTEMA",
+    "fecha_registro": "2026-07-15T04:40:47.549Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$RcVSNhWyGUMVlRyguUbEcB$RLkDYq1Gxess/Vu0fDIslyiFi7qx6CBq8rOHVLMoY38=",
+    "last_login": "2026-07-16T23:40:41.363Z",
+    "is_superuser": false,
+    "username": "leilani Sibel",
+    "email": "leitremo56@hotmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-16T23:40:09.356Z",
+    "first_name": "LEILANI SIBEL",
+    "last_name": "TREJO MORAN",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-16T23:40:10.451Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$96DWJ0j6dnLT8NfCB0C9jw$fqbvZ2GjzPiNmTm/R0jZWUxiic5n1e8hMbxN6Zx99l8=",
+    "last_login": "2026-07-17T00:57:58.412Z",
+    "is_superuser": true,
+    "username": "Leilani",
+    "email": "leitremo56@hotmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-16T23:59:14.638Z",
+    "first_name": "",
+    "last_name": "",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-16T23:59:15.110Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$XsSPJgMlvF2NPKZnwB8G8W$Svn2hVlh7GJTrL6It2XN+6QrZJapC34/A1YA8JgWKLE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Armando",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T00:11:53.556Z",
+    "first_name": "",
+    "last_name": "",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-17T00:11:54.460Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nj7zWHTtLrK21WUR9r1z1W$Zn/3LiLc72/fs83TK71Z6w1ckMSEDdE7QUgWNHZd1gM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Sibel29",
+    "email": "leitremo56@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T00:16:30.240Z",
+    "first_name": "Sibel",
+    "last_name": "Trejo",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-17T00:16:31.339Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$CM2TzWlmhsRQPfRgOtQiL9$ukUoA/JT/eytDTRS3yuiT9TYBZ4CwCJzuL8JmiK2eO4=",
+    "last_login": "2026-07-17T06:11:04.624Z",
+    "is_superuser": false,
+    "username": "Lucilu",
+    "email": "lumosa197812@hotmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T00:22:36.076Z",
+    "first_name": "Lucia",
+    "last_name": "Morán",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-17T00:22:36.979Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cIK6lrhwkYsmlGpkGZ9PV6$9EWmcPyaqtmsoj130OVfSDoZ9d0BO0lBKx2s0+HyjgA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Arturo",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T01:00:08.383Z",
+    "first_name": "",
+    "last_name": "",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-17T01:00:09.233Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$gm1WF7fLQqD3IZ64qBd9vi$cDkMyZHCCM3LhuUQLkJxdVEDv21D4/bT19q/46za7Jo=",
+    "last_login": "2026-07-17T04:09:04.985Z",
+    "is_superuser": false,
+    "username": "Gemelo",
+    "email": "armando10@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T02:23:43.770Z",
+    "first_name": "Armando",
+    "last_name": "García",
+    "role": "RESPONSABLE",
+    "fecha_registro": "2026-07-17T02:23:44.605Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$63CLUZvS3Ih0JWkqLhCtAs$vlRlM6g5OZk9W2DGZ9kuUFae3AZBinZZd2uWzboCwfw=",
+    "last_login": "2026-07-17T05:27:35.408Z",
+    "is_superuser": false,
+    "username": "Svein",
+    "email": "erik@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T02:26:52.410Z",
+    "first_name": "Erik",
+    "last_name": "Trejo",
+    "role": "RESPONSABLE",
+    "fecha_registro": "2026-07-17T02:26:53.365Z",
+    "ultima_publicacion": "2026-07-17T05:29:03.897Z",
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$iJLjC15Q434LZecI11v0uu$AfgNzUFP4vyyp+kLHj7e4n2wB85Gqd96C3PbsAqI4y0=",
+    "last_login": "2026-07-17T05:24:37.544Z",
+    "is_superuser": false,
+    "username": "Nat",
+    "email": "natalia10@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T02:29:16.539Z",
+    "first_name": "Natalia",
+    "last_name": "Gonzales",
+    "role": "RESPONSABLE",
+    "fecha_registro": "2026-07-17T02:29:17.596Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$97daHTd0BXQFAF9lriU6PK$BNSNNCOqMxYiPB6C+VCF3IdBg3Bigw2tbvxC4DMk+uE=",
+    "last_login": "2026-07-17T05:33:22.026Z",
+    "is_superuser": false,
+    "username": "Edwin17",
+    "email": "edwin17@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-17T05:26:02.447Z",
+    "first_name": "Edwin",
+    "last_name": "Bernal",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-17T05:26:03.538Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$0nrPIhtfDnaUnWhEdvOmzj$1s64hiv2qWhVovn7zBdGnc9ruAgLkbSjV+OTUMDclKE=",
+    "last_login": "2026-07-30T21:23:24.695Z",
+    "is_superuser": true,
+    "username": "admin_nuevo",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-30T21:16:12.779Z",
+    "first_name": "",
+    "last_name": "",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-30T21:16:13.971Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 21,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$RNoBRXaUUAzHy2LQbsjmir$Um8XDb8OhIbR/3HetK9nMXqRnBtKFrk8k7qEWwz0PVw=",
+    "last_login": "2026-08-05T18:06:52.985Z",
+    "is_superuser": false,
+    "username": "xim_mtz",
+    "email": "martinez.garduno.ximena04@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-31T07:31:56.024Z",
+    "first_name": "ximena",
+    "last_name": "Martinez",
+    "role": "INTERESADO",
+    "fecha_registro": "2026-07-31T07:31:58.885Z",
+    "ultima_publicacion": null,
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.usuario",
+  "pk": 22,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$9cdTSq3c8Qc2aoPV9p9c0x$SAtgMjQT5Abq4p05lNITJh4I21dU7u1Mtz2tPHJ2tC4=",
+    "last_login": "2026-08-05T18:07:14.489Z",
+    "is_superuser": false,
+    "username": "Liz_mtz",
+    "email": "martinez.garduno.lizeth.15@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-31T07:39:14.682Z",
+    "first_name": "Lizeth",
+    "last_name": "Martinez",
+    "role": "RESPONSABLE",
+    "fecha_registro": "2026-07-31T07:39:17.550Z",
+    "ultima_publicacion": "2026-07-31T07:41:24.253Z",
+    "ubicacion": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "principal.especie",
+  "pk": 1,
+  "fields": {
+    "tipo_especie": "perro"
+  }
+},
+{
+  "model": "principal.especie",
+  "pk": 2,
+  "fields": {
+    "tipo_especie": "gato"
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 1,
+  "fields": {
+    "nombre": "Luna",
+    "especie": 1,
+    "responsable": 4,
+    "ubicacion": null,
+    "esterilizado": true,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2025-04-23",
+    "edad_aproximada": "1 año",
+    "sexo": "Hembra",
+    "fecha_publicacion": "2026-07-16T23:43:11.934Z",
+    "estado_publicacion": "Disponible",
+    "detalles": ""
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 3,
+  "fields": {
+    "nombre": "Fifi",
+    "especie": 1,
+    "responsable": 6,
+    "ubicacion": null,
+    "esterilizado": true,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2025-04-23",
+    "edad_aproximada": "1 año",
+    "sexo": "Hembra",
+    "fecha_publicacion": "2026-07-17T00:13:14.874Z",
+    "estado_publicacion": "Disponible",
+    "detalles": "Fifi es una mascota muy linda, se alegra con solo verte, le encantan los sobresitos pedigree, es un poco enojona, no tan sociable con los demas perros"
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 5,
+  "fields": {
+    "nombre": "Canelo",
+    "especie": 1,
+    "responsable": 5,
+    "ubicacion": 6,
+    "esterilizado": false,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2022-10-23",
+    "edad_aproximada": "4 años",
+    "sexo": "Macho",
+    "fecha_publicacion": "2026-07-17T01:08:29.863Z",
+    "estado_publicacion": "Disponible",
+    "detalles": ""
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 6,
+  "fields": {
+    "nombre": "Abelito",
+    "especie": 1,
+    "responsable": 10,
+    "ubicacion": 6,
+    "esterilizado": false,
+    "vacunado": false,
+    "fecha_nacimiento_aproximada": "2026-04-01",
+    "edad_aproximada": "3 meses",
+    "sexo": "Macho",
+    "fecha_publicacion": "2026-07-17T02:25:42.571Z",
+    "estado_publicacion": "Disponible",
+    "detalles": ""
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 7,
+  "fields": {
+    "nombre": "Nico",
+    "especie": 2,
+    "responsable": 11,
+    "ubicacion": 4,
+    "esterilizado": true,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2018-10-10",
+    "edad_aproximada": "8 años",
+    "sexo": "Macho",
+    "fecha_publicacion": "2026-07-17T02:28:14.619Z",
+    "estado_publicacion": "Rechazada",
+    "detalles": ""
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 8,
+  "fields": {
+    "nombre": "Momo",
+    "especie": 1,
+    "responsable": 12,
+    "ubicacion": 8,
+    "esterilizado": true,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2021-07-10",
+    "edad_aproximada": "5 años",
+    "sexo": "Hembra",
+    "fecha_publicacion": "2026-07-17T02:30:27.887Z",
+    "estado_publicacion": "Adoptada",
+    "detalles": ""
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 9,
+  "fields": {
+    "nombre": "Nicolas",
+    "especie": 2,
+    "responsable": 11,
+    "ubicacion": 6,
+    "esterilizado": true,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2018-10-10",
+    "edad_aproximada": "6 años",
+    "sexo": "Macho",
+    "fecha_publicacion": "2026-07-17T05:29:03.897Z",
+    "estado_publicacion": "Disponible",
+    "detalles": ""
+  }
+},
+{
+  "model": "principal.mascota",
+  "pk": 13,
+  "fields": {
+    "nombre": "Max",
+    "especie": 1,
+    "responsable": 22,
+    "ubicacion": 3,
+    "esterilizado": true,
+    "vacunado": true,
+    "fecha_nacimiento_aproximada": "2024-07-30",
+    "edad_aproximada": "2 años",
+    "sexo": "Macho",
+    "fecha_publicacion": "2026-07-31T07:41:24.253Z",
+    "estado_publicacion": "Disponible",
+    "detalles": ""
+  }
+}
+]
