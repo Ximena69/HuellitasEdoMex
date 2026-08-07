@@ -64,8 +64,18 @@ def adoptar(request):
 
 def detalle(request):
     id_mascota = request.GET.get('id')
-    mascota_obj = get_object_or_404(Mascota, id_mascota=id_mascota)
-    return render(request, 'detalle.html', {'mascota': mascota_obj})
+
+    if not request.user.is_authenticated:
+        return redirect(f"/login/?next=/detalle/?id={id_mascota}")
+
+    mascota_obj = get_object_or_404(
+        Mascota,
+        id_mascota=id_mascota
+    )
+
+    return render(request, "detalle.html", {
+        "mascota": mascota_obj
+    })
 
 def solicitud(request):
     if not request.user.is_authenticated or request.user.role not in ['RESPONSABLE', 'INTERESADO']:
@@ -164,14 +174,36 @@ def registro(request):
 
         # CORRECCIÓN: Se agrega is_active=True para que puedan loguearse al instante
         nuevo_usuario = Usuario.objects.create_user(
-            username=username, email=email, password=password,
-            first_name=nombre, last_name=apellido, role=role,
+            username=username,
+            email=email,
+            password=password,
+            first_name=nombre,
+            last_name=apellido,
+            role=role,
             is_active=True
         )
+        
         nuevo_usuario.save()
-
-        messages.success(request, f"¡Cuenta creada con éxito para {username}!")
-        return redirect('login')
+        
+        # Iniciar sesión automáticamente
+        auth_login(request, nuevo_usuario)
+        
+        messages.success(
+            request,
+            f"¡Bienvenido a Huellitas EdoMex, {nombre}!"
+        )
+        
+        siguiente = request.POST.get("next")
+        
+        if siguiente:
+            return redirect(siguiente)
+        
+        if nuevo_usuario.role == "RESPONSABLE":
+            return redirect("panel_responsable")
+        
+        elif nuevo_usuario.role == "INTERESADO":
+            return redirect("panel_interesado")
+        return redirect("inicio")
 
     return render(request, "registro.html")
 
@@ -271,14 +303,21 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
+
+            siguiente = request.GET.get('next')
+            
+            if siguiente:
+                return redirect(siguiente)
+
             if user.role == 'ADMIN_SISTEMA':
                 return redirect('panel_admin')
+
             elif user.role == 'RESPONSABLE':
                 return redirect('panel_responsable')
+
             elif user.role == 'INTERESADO':
                 return redirect('panel_interesado')
-            else:
-                return redirect('inicio')
+            return redirect('inicio')
         else:
             messages.error(request, "Credenciales incorrectas o correo no registrado. Inténtalo de nuevo.")
 

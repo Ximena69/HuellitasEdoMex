@@ -52,7 +52,7 @@ Iniciar sesión | Huellitas EdoMex
 
 
 
-                        <form method="post" action="{% url 'login' %}">
+                        <form method="post" action="{% url 'login' %}?next={{ request.GET.next }}">
 
                             {% csrf_token %}
 
@@ -90,7 +90,12 @@ Iniciar sesión | Huellitas EdoMex
 
                         <p class="text-center mb-0">
 
-                            ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a>
+                            <p class="text-center mb-0">
+                                ¿No tienes una cuenta?
+                                <a href="{% url 'registro' %}?next={{ request.GET.next }}">
+                                    Regístrate
+                                </a>
+                            </p>
 
                         </p>
 
