@@ -492,7 +492,41 @@ def rechazar_mascota(request, id):
     )
 
     return redirect('panel_admin')
+@login_required
+def cambiar_estado_usuario(request, id):
+    if request.user.role != 'ADMIN_SISTEMA':
+        messages.error(request, "Acceso denegado.")
+        return redirect('inicio')
 
+    if request.method == 'POST':
+        usuario = get_object_or_404(
+            Usuario,
+            id=id
+        )
+
+        # Evitar que el administrador se desactive a sí mismo
+        if usuario == request.user:
+            messages.error(
+                request,
+                "No puedes desactivar tu propia cuenta de administrador."
+            )
+            return redirect('panel_admin')
+
+        usuario.is_active = not usuario.is_active
+        usuario.save()
+
+        if usuario.is_active:
+            messages.success(
+                request,
+                f"El usuario {usuario.username} fue activado correctamente."
+            )
+        else:
+            messages.warning(
+                request,
+                f"El usuario {usuario.username} fue desactivado correctamente."
+            )
+
+    return redirect('panel_admin')
 @login_required
 def eliminar_usuario_inactivo(request, id):
 

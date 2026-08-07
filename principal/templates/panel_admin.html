@@ -55,6 +55,135 @@
     </div>
 
     <hr class="my-5">
+    <div class="card shadow-sm border-0 mb-5 rounded-3">
+
+    <div class="card-header bg-primary text-white py-3">
+        <h4 class="mb-0 fw-bold">
+            <i class="bi bi-people-fill me-2"></i>
+            Usuarios registrados
+        </h4>
+    </div>
+
+    <div class="card-body p-4 bg-light">
+
+        {% if todos_usuarios %}
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for usuario in todos_usuarios %}
+
+                    <tr>
+
+                        <td>
+                            {{ usuario.first_name }} {{ usuario.last_name }}
+                        </td>
+
+                        <td>
+                            {{ usuario.username }}
+                        </td>
+
+                        <td>
+                            {{ usuario.email }}
+                        </td>
+
+                        <td>
+                            {{ usuario.get_role_display }}
+                        </td>
+
+                        <td>
+
+                            {% if usuario.is_active %}
+
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Activo
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-danger">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                    Inactivo
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <form method="post"
+                                  action="{% url 'cambiar_estado_usuario' usuario.id %}">
+
+                                {% csrf_token %}
+
+                                {% if usuario.is_active %}
+
+                                    <button type="submit"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('¿Deseas desactivar a este usuario? Ya no podrá iniciar sesión.');">
+
+                                        <i class="bi bi-person-x-fill"></i>
+                                        Desactivar
+
+                                    </button>
+
+                                {% else %}
+
+                                    <button type="submit"
+                                            class="btn btn-success btn-sm"
+                                            onclick="return confirm('¿Deseas activar nuevamente a este usuario?');">
+
+                                        <i class="bi bi-person-check-fill"></i>
+                                        Activar
+
+                                    </button>
+
+                                {% endif %}
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p class="text-muted mb-0">
+            <i class="bi bi-info-circle-fill"></i>
+            No hay usuarios registrados.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<hr class="my-5">
 
 <div class="card shadow-sm border-0 rounded-3">
     <div class="card-header bg-warning text-dark py-3">

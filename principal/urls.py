@@ -26,6 +26,7 @@ urlpatterns = [
     path('solicitud/detalle/<int:id>/', views.detalle_solicitud, name='detalle_solicitud'),
     path('panel/interesado/', views.panel_interesado, name='panel_interesado'),
     path('panel/admin-panel/', views.panel_admin, name='panel_admin'),
+    path('panel/admin-panel/cambiar-estado-usuario/<int:id>/',views.cambiar_estado_usuario,name='cambiar_estado_usuario'),
     path('solicitud/cancelar/<int:id>/', views.cancelar_solicitud, name='cancelar_solicitud'),
     path('panel/admin-panel/aprobar/<int:id>/', views.aprobar_mascota, name='aprobar_mascota'),
     path('panel/admin-panel/rechazar/<int:id>/',views.rechazar_mascota,name='rechazar_mascota'),
