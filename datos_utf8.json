@@ -406,8 +406,15 @@
       "sexo": "Hembra",
       "fecha_publicacion": "2026-07-16T23:43:11.934Z",
       "estado_publicacion": "Disponible",
-      "detalles": "",
-      "foto": "mascotas/perro.jpg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 1,
+    "fields": {
+      "mascota": 1,
+      "url_imagen": "mascotas/perro.jpg"
     }
   },
   {
@@ -425,8 +432,15 @@
       "sexo": "Hembra",
       "fecha_publicacion": "2026-07-17T00:13:14.874Z",
       "estado_publicacion": "Disponible",
-      "detalles": "Fifi es una mascota muy linda, se alegra con solo verte, le encantan los sobresitos pedigree, es un poco enojona, no tan sociable con los demas perros",
-      "foto": "mascotas/panchita.jpeg"
+      "detalles": "Fifi es una mascota muy linda, se alegra con solo verte, le encantan los sobresitos pedigree, es un poco enojona, no tan sociable con los demas perros"
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 2,
+    "fields": {
+      "mascota": 3,
+      "url_imagen": "mascotas/panchita.jpeg"
     }
   },
   {
@@ -444,8 +458,15 @@
       "sexo": "Macho",
       "fecha_publicacion": "2026-07-17T01:08:29.863Z",
       "estado_publicacion": "Disponible",
-      "detalles": "",
-      "foto": "mascotas/canelo.jpeg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 3,
+    "fields": {
+      "mascota": 5,
+      "url_imagen": "mascotas/canelo.jpeg"
     }
   },
   {
@@ -463,8 +484,15 @@
       "sexo": "Macho",
       "fecha_publicacion": "2026-07-17T02:25:42.571Z",
       "estado_publicacion": "Disponible",
-      "detalles": "",
-      "foto": "mascotas/abelito.jpeg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 4,
+    "fields": {
+      "mascota": 6,
+      "url_imagen": "mascotas/abelito.jpeg"
     }
   },
   {
@@ -482,8 +510,15 @@
       "sexo": "Macho",
       "fecha_publicacion": "2026-07-17T02:28:14.619Z",
       "estado_publicacion": "Rechazada",
-      "detalles": "",
-      "foto": "mascotas/nico.jpeg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 5,
+    "fields": {
+      "mascota": 7,
+      "url_imagen": "mascotas/nico.jpeg"
     }
   },
   {
@@ -501,8 +536,15 @@
       "sexo": "Hembra",
       "fecha_publicacion": "2026-07-17T02:30:27.887Z",
       "estado_publicacion": "Adoptada",
-      "detalles": "",
-      "foto": "mascotas/momo.jpeg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 6,
+    "fields": {
+      "mascota": 8,
+      "url_imagen": "mascotas/momo.jpeg"
     }
   },
   {
@@ -520,8 +562,15 @@
       "sexo": "Macho",
       "fecha_publicacion": "2026-07-17T05:29:03.897Z",
       "estado_publicacion": "Disponible",
-      "detalles": "",
-      "foto": "mascotas/nicolas.jpeg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 7,
+    "fields": {
+      "mascota": 9,
+      "url_imagen": "mascotas/nicolas.jpeg"
     }
   },
   {
@@ -539,8 +588,15 @@
       "sexo": "Macho",
       "fecha_publicacion": "2026-07-31T07:41:24.253Z",
       "estado_publicacion": "Disponible",
-      "detalles": "",
-      "foto": "mascotas/bor.jpeg"
+      "detalles": ""
+    }
+  },
+  {
+    "model": "principal.fotografia",
+    "pk": 8,
+    "fields": {
+      "mascota": 13,
+      "url_imagen": "mascotas/bor.jpeg"
     }
   }
 ]
