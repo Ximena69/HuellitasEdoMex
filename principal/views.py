@@ -1,4 +1,3 @@
-
 import re
 from django.utils import timezone
 from datetime import timedelta
@@ -21,7 +20,6 @@ def inicio(request):
         estado_publicacion='Disponible'
     ).prefetch_related('fotos').order_by('-fecha_publicacion')
     
-    # Validación segura para evitar que truene si el usuario no tiene ubicación
     if request.user.is_authenticated and getattr(request.user, 'ubicacion', None):
         try:
             mascotas_usuario = Mascota.objects.filter(
@@ -176,7 +174,6 @@ def registro(request):
             messages.error(request, "Este correo electrónico ya está registrado.")
             return render(request, "registro.html")
 
-        # CORRECCIÓN: Se agrega is_active=True para que puedan loguearse al instante
         nuevo_usuario = Usuario.objects.create_user(
             username=username,
             email=email,
@@ -188,8 +185,6 @@ def registro(request):
         )
         
         nuevo_usuario.save()
-        
-        # Iniciar sesión automáticamente
         auth_login(request, nuevo_usuario)
         
         messages.success(
@@ -204,7 +199,6 @@ def registro(request):
         
         if nuevo_usuario.role == "RESPONSABLE":
             return redirect("panel_responsable")
-        
         elif nuevo_usuario.role == "INTERESADO":
             return redirect("panel_interesado")
         return redirect("inicio")
@@ -227,7 +221,6 @@ def publicar(request):
 
         fecha_nacimiento_aproximada = request.POST.get('fecha_nacimiento_aproximada')
 
-        # Calcular automáticamente la edad
         fecha = date.fromisoformat(fecha_nacimiento_aproximada)
         hoy = date.today()
 
@@ -288,6 +281,7 @@ def publicar(request):
     return render(request, "publicar.html", {
         'municipios': ubicaciones
     })
+
 # =========================
 # LOGIN Y LOGOUT POR ROL
 # =========================
@@ -315,10 +309,8 @@ def login(request):
 
             if user.role == 'ADMIN_SISTEMA':
                 return redirect('panel_admin')
-
             elif user.role == 'RESPONSABLE':
                 return redirect('panel_responsable')
-
             elif user.role == 'INTERESADO':
                 return redirect('panel_interesado')
             return redirect('inicio')
@@ -341,11 +333,9 @@ def panel_responsable(request):
         return redirect('inicio')
 
     mascotas = Mascota.objects.filter(responsable=request.user)
-
     solicitudes = SolicitudAdopcion.objects.filter(
         mascota__responsable=request.user
     )
-
     historial_adopciones = SolicitudAdopcion.objects.filter(
         mascota__responsable=request.user,
         estado_solicitud='Aceptada'
@@ -384,18 +374,17 @@ def panel_admin(request):
         estado_solicitud='Aceptada'
     ).order_by('-fecha_solicitud')
     
-    # Fecha límite: usuarios con más de 180 días sin publicar
     fecha_limite = timezone.now() - timedelta(days=180)
     usuarios_inactivos = Usuario.objects.filter(
         role='RESPONSABLE',
         ultima_publicacion__lt=fecha_limite
     )
     return render(request, 'panel_admin.html', {
-    'todas_mascotas': todas_mascotas,
-    'todos_usuarios': todos_usuarios,
-    'todas_solicitudes': todas_solicitudes,
-    'usuarios_inactivos': usuarios_inactivos,
-    'historial_adopciones': historial_adopciones
+        'todas_mascotas': todas_mascotas,
+        'todos_usuarios': todos_usuarios,
+        'todas_solicitudes': todas_solicitudes,
+        'usuarios_inactivos': usuarios_inactivos,
+        'historial_adopciones': historial_adopciones
     })
 
 # =========================
@@ -439,13 +428,11 @@ def rechazar_solicitud(request, id):
 
 @login_required
 def detalle_solicitud(request, id):
-
     solicitud = get_object_or_404(
         SolicitudAdopcion,
         id_solicitud=id
     )
 
-    # Solo el responsable de esa mascota puede verla
     if solicitud.mascota.responsable != request.user:
         messages.error(request, "No tienes permiso para ver esta solicitud.")
         return redirect('inicio')
@@ -468,7 +455,6 @@ def cancelar_solicitud(request, id):
 
 @login_required
 def aprobar_mascota(request, id):
-    
     if request.user.role != 'ADMIN_SISTEMA':
         messages.error(request, "Acceso denegado.")
         return redirect('inicio')
@@ -479,6 +465,7 @@ def aprobar_mascota(request, id):
     
     messages.success(request, f"La publicación de '{mascota.nombre}' ha sido aprobada correctamente.")
     return redirect('panel_admin')
+
 @login_required
 def rechazar_mascota(request, id):
     if request.user.role != 'ADMIN_SISTEMA':
@@ -486,7 +473,6 @@ def rechazar_mascota(request, id):
         return redirect('inicio')
 
     mascota = get_object_or_404(Mascota, id_mascota=id)
-
     mascota.estado_publicacion = 'Rechazada'
     mascota.save()
 
@@ -496,6 +482,7 @@ def rechazar_mascota(request, id):
     )
 
     return redirect('panel_admin')
+
 @login_required
 def cambiar_estado_usuario(request, id):
     if request.user.role != 'ADMIN_SISTEMA':
@@ -508,7 +495,6 @@ def cambiar_estado_usuario(request, id):
             id=id
         )
 
-        # Evitar que el administrador se desactive a sí mismo
         if usuario == request.user:
             messages.error(
                 request,
@@ -531,9 +517,9 @@ def cambiar_estado_usuario(request, id):
             )
 
     return redirect('panel_admin')
+
 @login_required
 def eliminar_usuario_inactivo(request, id):
-
     if request.user.role != 'ADMIN_SISTEMA':
         messages.error(request, "Acceso denegado.")
         return redirect('inicio')
@@ -544,22 +530,16 @@ def eliminar_usuario_inactivo(request, id):
         role='RESPONSABLE'
     )
 
-    # Seguridad: solo eliminar si lleva más de 180 días sin publicar
     fecha_limite = timezone.now() - timedelta(days=180)
 
     if usuario.ultima_publicacion and usuario.ultima_publicacion < fecha_limite:
-
         nombre = f"{usuario.first_name} {usuario.last_name}"
-
         usuario.delete()
-
         messages.success(
             request,
             f"El usuario {nombre} fue eliminado por inactividad."
         )
-
     else:
-
         messages.warning(
             request,
             "Este usuario no cumple el periodo de inactividad."
@@ -569,7 +549,6 @@ def eliminar_usuario_inactivo(request, id):
 
 @login_required
 def eliminar_publicacion(request, id_mascota):
-
     mascota = get_object_or_404(
         Mascota,
         id_mascota=id_mascota,
@@ -577,12 +556,8 @@ def eliminar_publicacion(request, id_mascota):
     )
 
     if request.method == "POST":
-
-        # Eliminar también las fotografías
         mascota.fotos.all().delete()
-
         mascota.delete()
-
         messages.success(
             request,
             "La publicación fue cancelada correctamente."
