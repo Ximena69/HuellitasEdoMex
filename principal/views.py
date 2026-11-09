@@ -21,14 +21,18 @@ def inicio(request):
         estado_publicacion='Disponible'
     ).prefetch_related('fotos').order_by('-fecha_publicacion')
     
-    if request.user.is_authenticated and request.user.ubicacion:
-        mascotas_usuario = Mascota.objects.filter(
-            estado_publicacion='Disponible',
-            ubicacion=request.user.ubicacion
-        ).order_by('-fecha_publicacion')
-        
-        if mascotas_usuario.exists():
-            mascotas_cercanas = mascotas_usuario
+    # Validación segura para evitar que truene si el usuario no tiene ubicación
+    if request.user.is_authenticated and getattr(request.user, 'ubicacion', None):
+        try:
+            mascotas_usuario = Mascota.objects.filter(
+                estado_publicacion='Disponible',
+                ubicacion=request.user.ubicacion
+            ).order_by('-fecha_publicacion')
+            
+            if mascotas_usuario.exists():
+                mascotas_cercanas = mascotas_usuario
+        except Exception:
+            pass
 
     ubicaciones = Ubicacion.objects.all().order_by('municipio')
     
