@@ -82,7 +82,19 @@ Catálogo de Adopciones | Huellitas EdoMex
                             <div class="small text-muted mb-3">
                                 <p class="mb-1"><i class="bi bi-gender-ambiguous me-1 text-primary"></i> <strong>Sexo:</strong> {{ mascota.sexo }}</p>
                                 <p class="mb-1"><i class="bi bi-calendar3 me-1 text-success"></i> <strong>Edad:</strong> {{ mascota.edad_aproximada }}</p>
-                                <p class="mb-0"><i class="bi bi-geo-alt-fill me-1 text-danger"></i><strong>Ubicación:</strong> {{ mascota.ubicacion.municipio|default:mascota.responsable.ubicacion.municipio|default:"Toluca" }}</p>
+                                <p class="card-text mb-1">
+    <strong>Municipio:</strong>
+
+    {% if mascota.ubicacion %}
+        {{ mascota.ubicacion.municipio }}
+
+    {% elif mascota.responsable.ubicacion %}
+        {{ mascota.responsable.ubicacion.municipio }}
+
+    {% else %}
+        Toluca
+    {% endif %}
+</p>
                             </div>
 
                             <hr class="mt-0 line-dashed">

@@ -122,7 +122,19 @@ Inicio | Huellitas EdoMex
 
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fw-bold text-primary">{{ mascota.nombre }}</h5>
-                            <p class="card-text mb-1"><strong>Municipio:</strong> {{ mascota.ubicacion.municipio|default:mascota.responsable.ubicacion.municipio|default:"Toluca" }}</p>
+                            <p class="card-text mb-1">
+    <strong>Municipio:</strong>
+
+    {% if mascota.ubicacion %}
+        {{ mascota.ubicacion.municipio }}
+
+    {% elif mascota.responsable.ubicacion %}
+        {{ mascota.responsable.ubicacion.municipio }}
+
+    {% else %}
+        Toluca
+    {% endif %}
+</p>
                             <p class="card-text mb-1"><strong>Especie:</strong> {{ mascota.especie.tipo_especie|capfirst }}</p>
                             <p class="card-text mb-3"><strong>Edad aprox:</strong> {{ mascota.edad_aproximada }}</p>
                             <a href="{% url 'detalle' %}?id={{ mascota.id_mascota }}" class="btn btn-outline-primary w-100 mt-auto">Ver detalles</a>
