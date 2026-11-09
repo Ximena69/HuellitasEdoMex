@@ -65,7 +65,7 @@ Catálogo de Adopciones | Huellitas EdoMex
                     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover transition">
                         <div class="position-relative">
                             {% with foto_principal=mascota.fotos.first %}
-                                {% if foto_principal %}
+                                {% if foto_principal and foto_principal.url_imagen %}
                                     <img src="{{ foto_principal.url_imagen.url }}" class="w-100" alt="{{ mascota.nombre }}" style="height: 220px; object-fit: cover;">
                                 {% else %}
                                     <img src="https://via.placeholder.com/300x220?text=Sin+Foto" class="w-100" alt="Sin foto disponible" style="height: 220px; object-fit: cover;">

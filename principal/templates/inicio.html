@@ -113,7 +113,7 @@ Inicio | Huellitas EdoMex
                 <div class="col-lg-3 col-md-6">
                     <div class="card h-100 shadow-sm">
                         {% with foto_principal=mascota.fotos.first %}
-                            {% if foto_principal %}
+                            {% if foto_principal and foto_principal.url_imagen %}
                                 <img src="{{ foto_principal.url_imagen.url }}" class="card-img-top" alt="{{ mascota.nombre }}" style="height: 200px; object-fit: cover;">
                             {% else %}
                                 <img src="https://via.placeholder.com/300x200?text=Sin+Foto" class="card-img-top" alt="Sin foto disponible" style="height: 200px; object-fit: cover;">
@@ -123,7 +123,7 @@ Inicio | Huellitas EdoMex
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fw-bold text-primary">{{ mascota.nombre }}</h5>
                             <p class="card-text mb-1"><strong>Municipio:</strong> {{ mascota.ubicacion.municipio|default:mascota.responsable.ubicacion.municipio|default:"Toluca" }}</p>
-                            <p class="card-text mb-1"><strong>Especie:</strong> {{ mascota.especie.get_tipo_especie_display|default:mascota.especie.tipo_especie|capfirst }}</p>
+                            <p class="card-text mb-1"><strong>Especie:</strong> {{ mascota.especie.tipo_especie|capfirst }}</p>
                             <p class="card-text mb-3"><strong>Edad aprox:</strong> {{ mascota.edad_aproximada }}</p>
                             <a href="{% url 'detalle' %}?id={{ mascota.id_mascota }}" class="btn btn-outline-primary w-100 mt-auto">Ver detalles</a>
                         </div>
@@ -157,5 +157,4 @@ Inicio | Huellitas EdoMex
         </div>
     </div>
 </section>
-
 {% endblock %}
