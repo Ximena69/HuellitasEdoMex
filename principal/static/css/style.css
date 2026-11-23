@@ -698,3 +698,192 @@ img {
 .nav-link{
     transition:all .3s ease;
 }
+
+
+/* ==========================================
+   NAVBAR PRINCIPAL - HUELLITAS EDOMEX
+========================================== */
+
+.huellitas-navbar {
+    width: 100%;
+    background: #ffffff;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1000;
+}
+
+.huellitas-navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOGOTIPO Y NOMBRE */
+
+.huellitas-navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.huellitas-navbar .huellitas-logo {
+    width: 76px !important;
+    height: 76px !important;
+    max-width: 76px !important;
+    object-fit: contain;
+    display: block;
+}
+
+.huellitas-navbar .navbar-brand span {
+    color: #1E293B;
+    font-size: 1.15rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ENLACES */
+
+.huellitas-navbar .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.huellitas-navbar .nav-item {
+    flex-shrink: 0;
+}
+
+.huellitas-navbar .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 7px !important;
+    margin: 0;
+    color: #1E293B;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    border: none;
+}
+
+.huellitas-navbar .nav-link i {
+    font-size: 1.15rem;
+}
+
+.huellitas-navbar .nav-link:hover,
+.huellitas-navbar .nav-link.active {
+    color: #2563EB;
+}
+
+/* BOTÓN REGISTRARSE */
+
+.huellitas-navbar .huellitas-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    background: #2563EB;
+    border: 1px solid #2563EB;
+    color: #ffffff;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* CERRAR SESIÓN */
+
+.huellitas-navbar .huellitas-logout {
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* TABLETS Y LAPTOPS PEQUEÑAS */
+
+@media (max-width: 1399.98px) {
+
+    .huellitas-navbar .navbar-collapse {
+        padding-top: 15px;
+    }
+
+    .huellitas-navbar .navbar-nav {
+        align-items: stretch !important;
+        gap: 4px;
+    }
+
+    .huellitas-navbar .nav-link {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        white-space: normal;
+        gap: 12px;
+        padding: 9px 5px !important;
+    }
+
+    .huellitas-navbar .nav-link i {
+        width: 22px;
+        text-align: center;
+    }
+
+    .huellitas-navbar .nav-item {
+        width: 100%;
+    }
+
+    .huellitas-navbar .huellitas-register {
+        display: inline-flex;
+        margin-top: 5px;
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 575.98px) {
+
+    .huellitas-navbar {
+        padding: 8px 0;
+    }
+
+    .huellitas-navbar .huellitas-logo {
+        width: 55px !important;
+        height: 55px !important;
+        max-width: 55px !important;
+    }
+
+    .huellitas-navbar .navbar-brand span {
+        font-size: 1rem;
+    }
+
+    .huellitas-navbar .navbar-toggler {
+        padding: 5px 9px;
+    }
+}
+
+/* Alinear todos los elementos del menú */
+
+.huellitas-navbar .nav-link {
+    min-height: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Reservar el mismo espacio para todos los iconos */
+
+.huellitas-navbar .nav-link i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    min-width: 22px;
+    font-size: 1.15rem;
+    margin-bottom: 3px;
+}
