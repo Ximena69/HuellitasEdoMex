@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block title %}
@@ -20,33 +21,37 @@ Registro | Huellitas EdoMex
                         {% endfor %}
                     {% endif %}
 
-                    <form method="post" action="{% url 'registro' %}">
+                    <form id="formRegistro" method="post" action="{% url 'registro' %}">
                         {% csrf_token %}
-                        
+
                         <input
-                        type="hidden"
-                        name="next"
-                        value="{{ request.GET.next }}"
+                            type="hidden"
+                            name="next"
+                            value="{{ request.GET.next }}"
                         >
-                        {% csrf_token %}
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" name="nombre" class="form-control" required>
                             </div>
+
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Apellido</label>
                                 <input type="text" name="apellido" class="form-control" required>
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label">Nombre de Usuario</label>
                             <input type="text" name="username" class="form-control" required>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label">Correo Electrónico</label>
                             <input type="email" name="email" class="form-control" required>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label">¿Qué deseas hacer?</label>
                             <select name="role" class="form-select" required>
@@ -54,19 +59,51 @@ Registro | Huellitas EdoMex
                                 <option value="RESPONSABLE">Quiero dar en adopción (Responsable)</option>
                             </select>
                         </div>
-                        <div class="mb-4">
+
+                        <div class="mb-3">
                             <label class="form-label">Contraseña</label>
-                            <input type="password" name="password" class="form-control" required>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control"
+                                required
+                            >
                         </div>
-                        
+
+                        <div class="mb-4">
+                            <label class="form-label">Confirmar contraseña</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirm_password"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" id="checkLegal" required>
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="checkLegal"
+                                name="acepta_terminos"
+                                value="1"
+                                required
+                            >
+
                             <label class="form-check-label small text-muted" for="checkLegal">
-                                Acepto de conformidad los <a href="{% url 'terminos' %}" target="_blank" class="text-primary text-decoration-underline fw-bold">Términos y Condiciones</a> y el <a href="{% url 'privacidad' %}" target="_blank" class="text-primary text-decoration-underline fw-bold">Aviso de Privacidad</a> del sistema.
+                                Acepto de conformidad los
+                                <a href="{% url 'terminos' %}" target="_blank" class="text-primary text-decoration-underline fw-bold">Términos y Condiciones</a>
+                                y el
+                                <a href="{% url 'privacidad' %}" target="_blank" class="text-primary text-decoration-underline fw-bold">Aviso de Privacidad</a>
+                                del sistema.
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Crear Cuenta</button>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                            Crear Cuenta
+                        </button>
                     </form>
                 </div>
             </div>

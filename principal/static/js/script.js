@@ -1,34 +1,29 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const buscador =
-    document.querySelector("#buscadorMascotas");
+    // =====================================
+    // BUSCADOR DE MASCOTAS
+    // =====================================
+
+    const buscador = document.querySelector("#buscadorMascotas");
 
     if (buscador) {
 
         buscador.addEventListener("input", () => {
 
-            const texto =
-            buscador.value.toLowerCase();
+            const texto = buscador.value.toLowerCase();
 
-            const tarjetas =
-            document.querySelectorAll(".mascota-card");
+            const tarjetas = document.querySelectorAll(".mascota-card");
 
             tarjetas.forEach(card => {
 
-                const nombre =
-                card.querySelector(".card-title")
-                .textContent
-                .toLowerCase();
+                const titulo = card.querySelector(".card-title");
 
-                if (nombre.includes(texto)) {
+                if (!titulo) return;
 
-                    card.style.display = "block";
+                const nombre = titulo.textContent.toLowerCase();
 
-                } else {
-
-                    card.style.display = "none";
-
-                }
+                card.style.display = nombre.includes(texto) ? "" : "none";
 
             });
 
@@ -36,80 +31,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
-const formRegistro =
-document.querySelector("#formRegistro");
+    // =====================================
+    // VALIDAR CONTRASEÑAS EN EL REGISTRO
+    // =====================================
 
-if (formRegistro) {
+    const formRegistro = document.querySelector("#formRegistro");
 
-    formRegistro.addEventListener("submit", (e) => {
+    if (formRegistro) {
 
-        const pass =
-        document.querySelector("#password").value;
+        formRegistro.addEventListener("submit", (evento) => {
 
-        const confirm =
-        document.querySelector("#confirmPassword").value;
+            const pass = document.querySelector("#password");
+            const confirm = document.querySelector("#confirmPassword");
 
-        if (pass !== confirm) {
+            if (pass && confirm && pass.value !== confirm.value) {
 
-            e.preventDefault();
+                evento.preventDefault();
 
-            alert("Las contraseñas no coinciden");
+                alert("Las contraseñas no coinciden.");
 
-        }
+                confirm.focus();
 
-    });
+            }
 
-}
-const formPublicar =
-document.querySelector("#formPublicar");
+        });
 
-if (formPublicar) {
+    }
 
-    formPublicar.addEventListener("submit", (e) => {
+    // =====================================
+    // CONFIRMAR PUBLICACIÓN
+    // =====================================
 
-        const respuesta = confirm(
-            "¿Deseas publicar esta mascota?"
-        );
+    const formPublicar = document.querySelector("#formPublicar");
 
-        if (!respuesta) {
+    if (formPublicar) {
 
-            e.preventDefault();
+        formPublicar.addEventListener("submit", (evento) => {
 
-        }
+            const respuesta = confirm(
+                "¿Deseas publicar esta mascota?"
+            );
 
-    });
+            if (!respuesta) {
+                evento.preventDefault();
+            }
 
-}
-const formSolicitud =
-document.querySelector("#formSolicitud");
+        });
 
-if (formSolicitud) {
+    }
 
-    formSolicitud.addEventListener("submit", (e) => {
+    // =====================================
+    // CONFIRMAR SOLICITUD DE ADOPCIÓN
+    // =====================================
 
-        const respuesta = confirm(
-            "¿Deseas enviar la solicitud?"
-        );
+    const formSolicitud = document.querySelector("#formSolicitud");
 
-        if (!respuesta) {
+    if (formSolicitud) {
 
-            e.preventDefault();
+        formSolicitud.addEventListener("submit", (evento) => {
 
-        }
+            const respuesta = confirm(
+                "¿Deseas enviar la solicitud de adopción?"
+            );
 
-    });
+            if (!respuesta) {
+                evento.preventDefault();
+            }
 
-}
-const telefonos =
-document.querySelectorAll('input[type="tel"]');
+        });
 
-telefonos.forEach(campo => {
+    }
 
-    campo.addEventListener("input", () => {
+    // =====================================
+    // VALIDAR CAMPOS TELEFÓNICOS
+    // =====================================
 
-        campo.value =
-        campo.value.replace(/\D/g, "");
+    const telefonos = document.querySelectorAll('input[type="tel"]');
+
+    telefonos.forEach(campo => {
+
+        campo.addEventListener("input", () => {
+
+            campo.value = campo.value.replace(/\D/g, "");
+
+        });
 
     });
 

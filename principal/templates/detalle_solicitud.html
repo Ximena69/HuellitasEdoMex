@@ -165,29 +165,27 @@
     {% endif %}
 </p>
 
+
 {% if solicitud.estado_solicitud == 'Pendiente' %}
+    <div class="mt-4 d-flex gap-2">
+        <form method="POST" action="{% url 'aceptar_solicitud' solicitud.id_solicitud %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle-fill"></i>
+                Aceptar solicitud
+            </button>
+        </form>
 
-<div class="mt-4 d-flex gap-2">
-
-    <a href="{% url 'aceptar_solicitud' solicitud.id_solicitud %}"
-       class="btn btn-success">
-
-        <i class="bi bi-check-circle-fill"></i>
-        Aceptar solicitud
-
-    </a>
-
-    <a href="{% url 'rechazar_solicitud' solicitud.id_solicitud %}"
-       class="btn btn-danger">
-
-        <i class="bi bi-x-circle-fill"></i>
-        Rechazar solicitud
-
-    </a>
-
-</div>
-
+        <form method="POST" action="{% url 'rechazar_solicitud' solicitud.id_solicitud %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-x-circle-fill"></i>
+                Rechazar solicitud
+            </button>
+        </form>
+    </div>
 {% endif %}
+
 
 <div class="mt-4">
     <a href="{% url 'panel_responsable' %}"

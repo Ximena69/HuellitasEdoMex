@@ -1,406 +1,146 @@
+
 {% extends 'base.html' %}
 
 {% block title %}
 Enviar Solicitud de Adopción | Huellitas EdoMex
 {% endblock %}
 
-
 {% block content %}
-
 <section class="py-5">
-
-<div class="container">
-
-<div class="row justify-content-center">
-
-<div class="col-lg-8">
-
-
-<div class="card shadow border-0">
-
-<div class="card-body p-5">
-
-
-<h1 class="fw-bold text-center mb-3">
-Postularse para Adopción
-</h1>
-
-
-<p class="text-center text-muted mb-4">
-
-Estás enviando una solicitud para adoptar a:
-
-<strong class="text-primary">
-{{ mascota.nombre }}
-</strong>
-
-</p>
-
-
-
-{% if messages %}
-
-{% for message in messages %}
-
-<div class="alert alert-danger mb-3">
-
-{{ message }}
-
-</div>
-
-{% endfor %}
-
-{% endif %}
-
-
-
-
-
-<form method="post" action="{% url 'solicitud' %}?mascota_id={{ mascota.id_mascota }}">
-
-{% csrf_token %}
-
-
-
-
-
-<h4 class="fw-bold mb-3">
-Datos del adoptante
-</h4>
-
-
-<div class="row">
-
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Nombre completo
-</label>
-
-
-<input 
-type="text"
-class="form-control"
-value="{{ request.user.first_name }} {{ request.user.last_name }}"
-readonly>
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-<div class="mb-4">
-
-
-<label class="form-label">
-
-Correo electrónico
-
-</label>
-
-
-<input
-
-type="email"
-
-name="correo"
-
-class="form-control"
-
-value="{{ request.user.email }}"
-
-required>
-
-
-</div>
-
-
-
-
-
-
-<hr>
-
-
-
-
-
-<h4 class="fw-bold mb-3">
-
-Información del hogar
-
-</h4>
-
-
-
-
-<div class="row">
-
-
-
-<div class="col-md-6 mb-3">
-
-
-<label class="form-label">
-
-Tipo de vivienda
-
-</label>
-
-
-<select 
-name="vivienda"
-class="form-select"
-required>
-
-
-<option value="">
-Selecciona una opción
-</option>
-
-
-<option>
-Casa propia
-</option>
-
-
-<option>
-Casa rentada
-</option>
-
-
-<option>
-Departamento
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-<div class="col-md-6 mb-3">
-
-
-<label class="form-label">
-
-¿Cuenta con patio?
-
-</label>
-
-
-<select 
-name="patio"
-class="form-select"
-required>
-
-
-<option value="Sí">
-Sí
-</option>
-
-
-<option value="No">
-No
-</option>
-
-
-</select>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="mb-4">
-
-
-<label class="form-label">
-
-¿Tiene otras mascotas?
-
-</label>
-
-
-<select
-
-name="otras_mascotas"
-
-class="form-select"
-
-required>
-
-
-<option value="Sí">
-Sí
-</option>
-
-
-<option value="No">
-No
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-
-
-<hr>
-
-
-
-
-
-
-<h4 class="fw-bold mb-3">
-
-Experiencia y compromiso
-
-</h4>
-
-
-
-
-
-<div class="mb-4">
-
-
-<label class="form-label">
-
-Experiencia con mascotas
-
-</label>
-
-
-<textarea
-
-name="experiencia"
-
-class="form-control"
-
-rows="4"
-
-placeholder="Cuéntanos si has tenido mascotas antes y cómo ha sido tu experiencia..."
-
-required></textarea>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="mb-4">
-
-
-<label class="form-label">
-
-¿Por qué deseas adoptar esta mascota?
-
-</label>
-
-
-<textarea
-
-name="mensaje"
-
-class="form-control"
-
-rows="5"
-
-placeholder="Explícale al responsable por qué deseas darle un hogar..."
-
-required></textarea>
-
-
-<div class="form-text">
-
-Tu respuesta será revisada antes de aprobar la adopción.
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<button 
-type="submit"
-class="btn btn-success w-100 btn-lg">
-
-
-Enviar Solicitud de Adopción
-
-
-</button>
-
-
-
-
-
-<a href="{% url 'adoptar' %}" 
-
-class="btn btn-light w-100 mt-2">
-
-
-Cancelar
-
-
-</a>
-
-
-
-
-
-</form>
-
-
-
-</div>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-</div>
-
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow border-0">
+                    <div class="card-body p-5">
+
+                        <h1 class="fw-bold text-center mb-3">
+                            Postularse para Adopción
+                        </h1>
+
+                        <p class="text-center text-muted mb-4">
+                            Estás enviando una solicitud para adoptar a:
+                            <strong class="text-primary">
+                                {{ mascota.nombre }}
+                            </strong>
+                        </p>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-danger mb-3">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form id="formSolicitud" method="post"
+                              action="{% url 'solicitud' %}?mascota_id={{ mascota.id_mascota }}">
+                            {% csrf_token %}
+
+                            <h4 class="fw-bold mb-3">Datos del adoptante</h4>
+
+                            <div class="mb-3">
+                                <label class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control"
+                                       value="{{ request.user.first_name }} {{ request.user.last_name }}"
+                                       readonly>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono de contacto</label>
+                                <input type="tel" id="telefono" name="telefono"
+                                       class="form-control" maxlength="15"
+                                       inputmode="numeric" pattern="[0-9]{1,15}"
+                                       placeholder="Ingresa tu número de teléfono">
+                                <div class="form-text">Campo opcional. Máximo 15 dígitos.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="correo" class="form-label">Correo electrónico</label>
+                                <input type="email" id="correo" name="correo"
+                                       class="form-control" maxlength="254"
+                                       value="{{ request.user.email }}" required>
+                            </div>
+
+                            <hr>
+
+                            <h4 class="fw-bold mb-3">Información del hogar</h4>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="vivienda" class="form-label">Tipo de vivienda</label>
+                                    <select id="vivienda" name="vivienda"
+                                            class="form-select" required>
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="Casa propia">Casa propia</option>
+                                        <option value="Casa rentada">Casa rentada</option>
+                                        <option value="Departamento">Departamento</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="patio" class="form-label">¿Cuenta con patio?</label>
+                                    <select id="patio" name="patio" class="form-select" required>
+                                        <option value="Sí">Sí</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="otras_mascotas" class="form-label">
+                                    ¿Tiene otras mascotas?
+                                </label>
+                                <select id="otras_mascotas" name="otras_mascotas"
+                                        class="form-select" required>
+                                    <option value="Sí">Sí</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+                            <hr>
+
+                            <h4 class="fw-bold mb-3">Experiencia y compromiso</h4>
+
+                            <div class="mb-4">
+                                <label for="experiencia" class="form-label">
+                                    Experiencia con mascotas
+                                </label>
+                                <textarea id="experiencia" name="experiencia"
+                                          class="form-control" rows="4"
+                                          maxlength="2000"
+                                          placeholder="Cuéntanos si has tenido mascotas antes y cómo ha sido tu experiencia..."
+                                          required></textarea>
+                                <div class="form-text">Máximo 2000 caracteres.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="mensaje" class="form-label">
+                                    ¿Por qué deseas adoptar esta mascota?
+                                </label>
+                                <textarea id="mensaje" name="mensaje"
+                                          class="form-control" rows="5"
+                                          minlength="20" maxlength="2000"
+                                          placeholder="Explícale al responsable por qué deseas darle un hogar..."
+                                          required></textarea>
+                                <div class="form-text">
+                                    Escribe al menos 20 caracteres. Tu respuesta será revisada antes de aprobar la adopción.
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 btn-lg">
+                                Enviar Solicitud de Adopción
+                            </button>
+
+                            <a href="{% url 'adoptar' %}"
+                               class="btn btn-light w-100 mt-2">
+                                Cancelar
+                            </a>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
-
 {% endblock %}

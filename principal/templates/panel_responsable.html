@@ -61,12 +61,25 @@
                 </a>
             </div>
 
-            {% if solicitud.estado_solicitud == 'Pendiente' %}
-                <div class="mt-2">
-                    <a href="{% url 'aceptar_solicitud' solicitud.id_solicitud %}" class="btn btn-success btn-sm me-2">Aceptar</a>
-                    <a href="{% url 'rechazar_solicitud' solicitud.id_solicitud %}" class="btn btn-danger btn-sm">Rechazar</a>
-                </div>
-            {% endif %}
+            
+{% if solicitud.estado_solicitud == 'Pendiente' %}
+    <div class="mt-2">
+        <form method="POST" action="{% url 'aceptar_solicitud' solicitud.id_solicitud %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success btn-sm me-2">
+                Aceptar
+            </button>
+        </form>
+
+        <form method="POST" action="{% url 'rechazar_solicitud' solicitud.id_solicitud %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">
+                Rechazar
+            </button>
+        </form>
+    </div>
+{% endif %}
+
         </div>
     {% empty %}
         <p class="text-muted">No has recibido solicitudes de adopción todavía.</p>

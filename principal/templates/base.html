@@ -102,6 +102,18 @@
 
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'campanias' %}">
+                            <i class="bi bi-heart-pulse"></i> Campañas
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reportes_mascotas' %}">
+                            <i class="bi bi-search"></i> Mascotas perdidas
+                        </a>
+                    </li>
+
 
 
                     <li class="nav-item">
@@ -171,18 +183,34 @@
                             </li>
 
                         {% endif %}
+{% if user.role == "INTERESADO" or user.role == "RESPONSABLE" %}
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'reportar_mascota' %}">
+            <i class="bi bi-plus-circle"></i> Reportar mascota
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'mis_reportes' %}">
+            <i class="bi bi-clipboard-check"></i> Mis reportes
+        </a>
+    </li>
+
+{% endif %}
 
 
 
-                        <li class="nav-item ms-lg-3">
+                        
+<li class="nav-item ms-lg-3">
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="nav-link text-danger fw-semibold border-0 bg-transparent">
+            Cerrar sesión ({{ user.username }})
+        </button>
+    </form>
+</li>
 
-                            <a class="nav-link text-danger fw-semibold" href="{% url 'logout' %}">
-
-                                Cerrar sesión ({{ user.username }})
-
-                            </a>
-
-                        </li>
 
 
 

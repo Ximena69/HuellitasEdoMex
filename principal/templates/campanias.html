@@ -1,0 +1,161 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-success">
+            <i class="bi bi-heart-pulse-fill"></i>
+            Campañas de Bienestar Animal
+        </h1>
+
+        <p class="text-muted">
+            Encuentra jornadas de esterilización, vacunación,
+            desparasitación y atención veterinaria en tu municipio.
+        </p>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-body">
+
+            <form method="get" class="row g-3">
+
+                <div class="col-md-5">
+                    <label for="municipio" class="form-label">
+                        Municipio
+                    </label>
+
+                    <select name="municipio" id="municipio" class="form-select">
+                        <option value="">Todos los municipios</option>
+
+                        {% for ubicacion in ubicaciones %}
+                            <option value="{{ ubicacion.id_ubicacion }}"
+                                {% if municipio_seleccionado == ubicacion.id_ubicacion|stringformat:"s" %}selected{% endif %}>
+                                {{ ubicacion.municipio }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-5">
+                    <label for="tipo" class="form-label">
+                        Tipo de campaña
+                    </label>
+
+                    <select name="tipo" id="tipo" class="form-select">
+                        <option value="">Todos los tipos</option>
+
+                        {% for valor, etiqueta in tipos %}
+                            <option value="{{ valor }}"
+                                {% if tipo_seleccionado == valor %}selected{% endif %}>
+                                {{ etiqueta }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- LISTADO DE CAMPAÑAS -->
+    <div class="row g-4">
+
+        {% for campania in campanias %}
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card h-100 shadow-sm border-0">
+
+                    {% if campania.imagen %}
+                        <img src="{{ campania.imagen.url }}"
+                             class="card-img-top"
+                             alt="{{ campania.titulo }}"
+                             style="height: 220px; object-fit: cover;">
+                    {% else %}
+                        <div class="bg-light d-flex align-items-center justify-content-center"
+                             style="height: 220px;">
+                            <i class="bi bi-heart-pulse text-success"
+                               style="font-size: 4rem;"></i>
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body d-flex flex-column">
+
+                        <span class="badge bg-success align-self-start mb-2">
+                            {{ campania.get_tipo_display }}
+                        </span>
+
+                        <h5 class="card-title fw-bold">
+                            {{ campania.titulo }}
+                        </h5>
+
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            {% if campania.ubicacion %}
+                                {{ campania.ubicacion.municipio }}
+                            {% else %}
+                                Municipio no especificado
+                            {% endif %}
+                        </p>
+
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-calendar-event"></i>
+                            {{ campania.fecha_inicio|date:"d/m/Y" }}
+                        </p>
+
+                        <p class="mb-3">
+                            {{ campania.descripcion|truncatewords:20 }}
+                        </p>
+
+                        <a href="{% url 'detalle_campania' campania.id %}"
+                           class="btn btn-outline-success mt-auto">
+                            Ver información
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="col-12 text-center py-5">
+
+                <i class="bi bi-calendar-x text-muted"
+                   style="font-size: 4rem;"></i>
+
+                <h4 class="mt-3">
+                    No hay campañas disponibles
+                </h4>
+
+                <p class="text-muted">
+                    Actualmente no existen campañas publicadas
+                    con los filtros seleccionados.
+                </p>
+
+                <a href="{% url 'campanias' %}"
+                   class="btn btn-outline-success">
+                    Ver todas las campañas
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -32,19 +32,26 @@
                                         <i class="bi bi-eye-fill"></i> Auditar Ficha Técnica
                                     </a>
                                     
-                                    {% if mascota.estado_publicacion == "Pendiente" %}
-                                        <a href="{% url 'aprobar_mascota' mascota.id_mascota %}" 
-                                           class="btn btn-success btn-sm mt-2">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            Aprobar publicación
-                                        </a>
-                                        
-                                        <a href="{% url 'rechazar_mascota' mascota.id_mascota %}" 
-                                           class="btn btn-danger btn-sm mt-2">
-                                           <i class="bi bi-x-circle-fill"></i>
-                                           Rechazar publicación
-                                        </a>
-                                    {% endif %}
+                                    
+{% if mascota.estado_publicacion == "Pendiente" %}
+    <form method="POST" action="{% url 'aprobar_mascota' mascota.id_mascota %}" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-sm mt-2">
+            <i class="bi bi-check-circle-fill"></i>
+            Aprobar publicación
+        </button>
+    </form>
+
+    <form method="POST" action="{% url 'rechazar_mascota' mascota.id_mascota %}" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-sm mt-2">
+            <i class="bi bi-x-circle-fill"></i>
+            Rechazar publicación
+        </button>
+    </form>
+
+{% endif %}
+
                                 </div>
                             </div>
                         </div>
@@ -53,6 +60,335 @@
             </div>
         </div>
     </div>
+<!-- GESTIÓN DE CAMPAÑAS -->
+<section class="container my-5">
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-header bg-success text-white py-3">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <h4 class="mb-0">
+                    <i class="bi bi-heart-pulse"></i>
+                    Gestión de campañas de bienestar animal
+                </h4>
+
+                <a href="{% url 'crear_campania' %}" class="btn btn-light">
+                    <i class="bi bi-plus-circle"></i>
+                    Registrar campaña
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            {% if todas_campanias %}
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Municipio</th>
+                                <th>Fecha de inicio</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for campania in todas_campanias %}
+                                <tr>
+                                    <td>{{ campania.titulo }}</td>
+
+                                    <td>{{ campania.get_tipo_display }}</td>
+
+                                    <td>
+                                        {% if campania.ubicacion %}
+                                            {{ campania.ubicacion.municipio }}
+                                        {% else %}
+                                            No especificado
+                                        {% endif %}
+                                    </td>
+
+                                    <td>{{ campania.fecha_inicio|date:"d/m/Y" }}</td>
+
+                                    <td>
+                                        {% if campania.estado == 'Publicada' %}
+                                            <span class="badge bg-success">Publicada</span>
+                                        {% elif campania.estado == 'Borrador' %}
+                                            <span class="badge bg-warning text-dark">Borrador</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">Cancelada</span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex gap-2">
+
+                                            <a href="{% url 'editar_campania' campania.id %}"
+                                               class="btn btn-sm btn-primary">
+                                                <i class="bi bi-pencil"></i> Editar
+                                            </a>
+
+                                            <form method="post"
+                                                  action="{% url 'eliminar_campania' campania.id %}"
+                                                  onsubmit="return confirm('¿Estás segura de eliminar esta campaña?');">
+                                                {% csrf_token %}
+
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-info mb-0">
+                    <i class="bi bi-info-circle"></i>
+                    Todavía no hay campañas registradas.
+                    Selecciona «Registrar campaña» para agregar la primera.
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+</section>
+<!-- FIN DE GESTIÓN DE CAMPAÑAS -->
+
+<!-- GESTIÓN DE REPORTES DE MASCOTAS PERDIDAS Y ENCONTRADAS -->
+
+<div class="card shadow-sm border-0 mb-5 rounded-3">
+
+    <div class="card-header bg-danger text-white py-3">
+        <h4 class="mb-0 fw-bold">
+            <i class="bi bi-search me-2"></i>
+            Moderación de mascotas perdidas y encontradas
+        </h4>
+    </div>
+
+    <div class="card-body p-4">
+
+        <h5 class="fw-bold mb-3">
+            Reportes pendientes de revisión
+        </h5>
+
+        {% if reportes_pendientes %}
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>Fotografía</th>
+                            <th>Tipo</th>
+                            <th>Mascota</th>
+                            <th>Municipio</th>
+                            <th>Reportado por</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for reporte in reportes_pendientes %}
+
+                            <tr>
+
+                                <td>
+                                    {% if reporte.imagen %}
+                                        <img src="{{ reporte.imagen.url }}"
+                                             alt="Fotografía de la mascota"
+                                             style="width: 75px; height: 65px; object-fit: cover;"
+                                             class="rounded">
+                                    {% else %}
+                                        Sin fotografía
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    {{ reporte.get_tipo_display }}
+                                </td>
+
+                                <td>
+                                    <strong>
+                                        {{ reporte.nombre_mascota|default:"Sin nombre" }}
+                                    </strong>
+                                    <br>
+                                    <small class="text-muted">
+                                        {{ reporte.especie }}
+                                    </small>
+                                </td>
+
+                                <td>
+                                    {{ reporte.ubicacion|default:"No especificado" }}
+                                </td>
+
+                                <td>
+                                    {{ reporte.reportado_por.username|default:"Usuario no disponible" }}
+                                </td>
+
+                                <td>
+                                    {{ reporte.fecha_reporte|date:"d/m/Y" }}
+                                </td>
+
+                                <td>
+
+                                    <div class="d-flex flex-column gap-2">
+
+                                        <form method="POST"
+                                              action="{% url 'aprobar_reporte_mascota' reporte.id %}">
+                                            {% csrf_token %}
+
+                                            <button type="submit"
+                                                    class="btn btn-success btn-sm w-100">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Aprobar
+                                            </button>
+                                        </form>
+
+                                        <form method="POST"
+                                              action="{% url 'rechazar_reporte_mascota' reporte.id %}"
+                                              onsubmit="return confirm('¿Deseas rechazar este reporte?');">
+                                            {% csrf_token %}
+
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-sm w-100">
+                                                <i class="bi bi-x-circle-fill"></i>
+                                                Rechazar
+                                            </button>
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle-fill"></i>
+                No hay reportes pendientes de revisión.
+            </div>
+
+        {% endif %}
+
+        <hr class="my-4">
+
+        <h5 class="fw-bold mb-3">
+            Historial de todos los reportes
+        </h5>
+
+        {% if todos_reportes %}
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Mascota</th>
+                            <th>Reportado por</th>
+                            <th>Estado</th>
+                            <th>Revisado por</th>
+                            <th>Fecha de registro</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for reporte in todos_reportes %}
+
+                            <tr>
+
+                                <td>
+                                    {{ reporte.get_tipo_display }}
+                                </td>
+
+                                <td>
+                                    {{ reporte.nombre_mascota|default:"Sin nombre" }}
+                                    <br>
+                                    <small class="text-muted">
+                                        {{ reporte.especie }}
+                                    </small>
+                                </td>
+
+                                <td>
+                                    {{ reporte.reportado_por.username|default:"No disponible" }}
+                                </td>
+
+                                <td>
+
+                                    {% if reporte.estado == 'Aprobado' %}
+                                        <span class="badge bg-success">Aprobado</span>
+
+                                    {% elif reporte.estado == 'Rechazado' %}
+                                        <span class="badge bg-danger">Rechazado</span>
+
+                                    {% elif reporte.estado == 'Cerrado' %}
+                                        <span class="badge bg-secondary">Cerrado</span>
+
+                                    {% else %}
+                                        <span class="badge bg-warning text-dark">Pendiente</span>
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+                                    {{ reporte.revisado_por.username|default:"Sin revisión" }}
+                                </td>
+
+                                <td>
+                                    {{ reporte.fecha_creacion|date:"d/m/Y H:i" }}
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info mb-0">
+                Todavía no hay reportes registrados.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<!-- FIN DE GESTIÓN DE REPORTES DE MASCOTAS -->
+
 
     <hr class="my-5">
     <div class="card shadow-sm border-0 mb-5 rounded-3">
@@ -225,22 +561,23 @@
                             </td>
 
                             <td>
-                                {{ usuario.ultima_publicacion|date:"d/m/Y" }}
-                            </td>
+    {{ usuario.ultima_publicacion|date:"d/m/Y" }}
+</td>
 
-                            <td>
+<td>
+    <form method="POST"
+          action="{% url 'eliminar_usuario_inactivo' usuario.id %}"
+          onsubmit="return confirm('¿Eliminar este usuario por inactividad?');">
 
-                                <a href="{% url 'eliminar_usuario_inactivo' usuario.id %}"
-                                   class="btn btn-danger btn-sm"
-                                   onclick="return confirm('¿Eliminar este usuario por inactividad?');">
+        {% csrf_token %}
 
-                                    <i class="bi bi-trash-fill"></i>
-                                    Eliminar
+        <button type="submit" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash-fill"></i>
+            Eliminar
+        </button>
 
-                                </a>
-
-                            </td>
-
+    </form>
+</td>
                         </tr>
 
                         {% endfor %}
@@ -349,5 +686,6 @@
     </div>
 
 </div>
+</section>
 </section>
 {% endblock %}
