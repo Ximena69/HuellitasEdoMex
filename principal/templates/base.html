@@ -36,7 +36,7 @@
 
     <!-- CSS propio -->
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
 
 </head>
 
@@ -52,209 +52,155 @@
 
     ========================== -->
 
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
 
-        <div class="container">
 
-            
+<nav class="navbar navbar-expand-xxl navbar-light shadow-sm huellitas-navbar">
+    <div class="container">
 
-            <!-- Logo original -->
-
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
-
-                <img src="{% static 'img/logo/logo.png' %}" alt="Logo" width="90" height="90" class="me-2">
-
-                Huellitas EdoMex
-
-            </a>
-
-
-
-            <!-- Botón móvil -->
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Abrir menú de navegación">
-
-                <span class="navbar-toggler-icon"></span>
-
-            </button>
-
-
-
-            <!-- Menú y Contenedores Bootstrap Corregidos -->
-
-            <div class="collapse navbar-collapse" id="menu">
-
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-
-                    
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
-
-                    </li>
-
-
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'adoptar' %}">Adoptar</a>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'campanias' %}">
-                            <i class="bi bi-heart-pulse"></i> Campañas
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'reportes_mascotas' %}">
-                            <i class="bi bi-search"></i> Mascotas perdidas
-                        </a>
-                    </li>
-
-
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'publicar' %}">Publicar mascota</a>
-
-                    </li>
-
-
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'sobre' %}">Sobre nosotros</a>
-
-                    </li>
-
-
-
-                    <!-- Bloque de Autenticación Unificado -->
-
-                    {% if user.is_authenticated %}
-
-
-
-                        {% if user.role == "INTERESADO" %}
-
-                            <li class="nav-item">
-
-                                <a class="nav-link" href="{% url 'panel_interesado' %}">
-
-                                    Panel Interesado
-
-                                </a>
-
-                            </li>
-
-                        {% endif %}
-
-
-
-                        {% if user.role == "RESPONSABLE" %}
-
-                            <li class="nav-item">
-
-                                <a class="nav-link" href="{% url 'panel_responsable' %}">
-
-                                    Panel Responsable
-
-                                </a>
-
-                            </li>
-
-                        {% endif %}
-
-
-
-                        {% if user.role == "ADMIN_SISTEMA" %}
-
-                            <li class="nav-item">
-
-                                <a class="nav-link" href="{% url 'panel_admin' %}">
-
-                                    Admin (Sistema)
-
-                                </a>
-
-                            </li>
-
-                        {% endif %}
-{% if user.role == "INTERESADO" or user.role == "RESPONSABLE" %}
-
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'reportar_mascota' %}">
-            <i class="bi bi-plus-circle"></i> Reportar mascota
+        <!-- Logo y nombre -->
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
+            <img src="{% static 'img/logo/logo.png' %}"
+                 alt="Logo Huellitas EdoMex"
+                 class="huellitas-logo">
+            <span>Huellitas EdoMex</span>
         </a>
-    </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'mis_reportes' %}">
-            <i class="bi bi-clipboard-check"></i> Mis reportes
-        </a>
-    </li>
-
-{% endif %}
-
-
-
-                        
-<li class="nav-item ms-lg-3">
-    <form method="POST" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit" class="nav-link text-danger fw-semibold border-0 bg-transparent">
-            Cerrar sesión ({{ user.username }})
+        <!-- Botón responsive -->
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu"
+                aria-controls="menu"
+                aria-expanded="false"
+                aria-label="Abrir menú de navegación">
+            <span class="navbar-toggler-icon"></span>
         </button>
-    </form>
-</li>
 
+        <!-- Menú -->
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto align-items-xxl-center">
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'inicio' %}">
+                        <i class="bi bi-house-door"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'adoptar' %}">
+                        <i class="bi bi-heart"></i>
+                        <span>Adoptar</span>
+                    </a>
+                </li>
 
-                    {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'campanias' %}">
+                        <i class="bi bi-heart-pulse"></i>
+                        <span>Campañas</span>
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'reportes_mascotas' %}">
+                        <i class="bi bi-search-heart"></i>
+                        <span>Mascotas perdidas</span>
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'publicar' %}">
+                        <i class="bi bi-plus-circle"></i>
+                        <span>Publicar mascota</span>
+                    </a>
+                </li>
 
-                        <li class="nav-item ms-lg-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sobre' %}">
+                        <i class="bi bi-info-circle"></i>
+                        <span>Sobre nosotros</span>
+                    </a>
+                </li>
 
-                            <a class="nav-link" href="{% url 'login' %}">
+                {% if user.is_authenticated %}
 
-                                Iniciar sesión
-
-                            </a>
-
-                        </li>
-
-
-
-                        <li class="nav-item ms-lg-2">
-
-                            <a class="btn btn-primary" href="{% url 'registro' %}">
-
-                                Registrarse
-
-                            </a>
-
-                        </li>
-
-
-
+                    {% if user.role == "INTERESADO" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'panel_interesado' %}">
+                            <i class="bi bi-person-heart"></i>
+                            <span>Mi panel</span>
+                        </a>
+                    </li>
                     {% endif %}
 
+                    {% if user.role == "RESPONSABLE" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'panel_responsable' %}">
+                            <i class="bi bi-clipboard2-check"></i>
+                            <span>Mi panel</span>
+                        </a>
+                    </li>
+                    {% endif %}
 
+                    {% if user.role == "ADMIN_SISTEMA" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'panel_admin' %}">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Administración</span>
+                        </a>
+                    </li>
+                    {% endif %}
 
-                </ul>
+                    {% if user.role == "INTERESADO" or user.role == "RESPONSABLE" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reportar_mascota' %}">
+                            <i class="bi bi-plus-circle"></i>
+                            <span>Reportar mascota</span>
+                        </a>
+                    </li>
 
-            </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mis_reportes' %}">
+                            <i class="bi bi-clipboard-check"></i>
+                            <span>Mis reportes</span>
+                        </a>
+                    </li>
+                    {% endif %}
 
+                    <li class="nav-item ms-xxl-2">
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link huellitas-logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Cerrar sesión</span>
+                            </button>
+                        </form>
+                    </li>
 
+                {% else %}
 
+                    <li class="nav-item ms-xxl-2">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Iniciar sesión</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-xxl-2">
+                        <a class="btn btn-primary huellitas-register"
+                           href="{% url 'registro' %}">
+                            <i class="bi bi-person-plus"></i>
+                            Registrarse
+                        </a>
+                    </li>
+
+                {% endif %}
+
+            </ul>
         </div>
+    </div>
+</nav>
 
-    </nav>
+
 
 
 
