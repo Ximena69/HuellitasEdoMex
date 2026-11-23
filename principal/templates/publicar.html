@@ -154,6 +154,57 @@ Publicar mascota | Huellitas EdoMex
                                 </select>
                             </div>
 
+<!-- CARACTERÍSTICAS PARA EL TEST DE COMPATIBILIDAD -->
+
+<div class="card bg-light border-0 p-3 mb-4">
+
+    <h5 class="fw-bold mb-3">Características para encontrarle un hogar ideal</h5>
+
+    <p class="text-muted">
+        Estos datos ayudarán a recomendar esta mascota a personas
+        con un estilo de vida compatible.
+    </p>
+
+    <div class="mb-3">
+        <label for="tamano" class="form-label">Tamaño de la mascota</label>
+        <select name="tamano" id="tamano" class="form-select" required>
+            <option value="" disabled selected>Selecciona el tamaño</option>
+            <option value="Pequeño">Pequeño</option>
+            <option value="Mediano">Mediano</option>
+            <option value="Grande">Grande</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="nivel_actividad" class="form-label">Nivel de actividad</label>
+        <select name="nivel_actividad" id="nivel_actividad" class="form-select" required>
+            <option value="" disabled selected>Selecciona el nivel</option>
+            <option value="Bajo">Bajo (tranquilo)</option>
+            <option value="Moderado">Moderado (actividad regular)</option>
+            <option value="Alto">Alto (muy activo)</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="convive_ninos" class="form-label">¿Puede convivir con niños?</label>
+        <select name="convive_ninos" id="convive_ninos" class="form-select" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="True">Sí</option>
+            <option value="False">No</option>
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <label for="convive_mascotas" class="form-label">¿Puede convivir con otras mascotas?</label>
+        <select name="convive_mascotas" id="convive_mascotas" class="form-select" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="True">Sí</option>
+            <option value="False">No</option>
+        </select>
+    </div>
+
+</div>
+
 
 
                             <div class="mb-3">
@@ -206,7 +257,14 @@ Publicar mascota | Huellitas EdoMex
 
                             <div class="form-check mb-3">
 
-                                <input class="form-check-input" type="checkbox" id="informacion" required>
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="informacion"
+                                    name="acepta_informacion"
+                                    value="1"
+                                    required
+                                >
 
                                 <label class="form-check-label" for="informacion">
 
@@ -220,7 +278,14 @@ Publicar mascota | Huellitas EdoMex
 
                             <div class="form-check mb-4">
 
-                                <input class="form-check-input" type="checkbox" id="terminos" required>
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="terminos"
+                                    name="acepta_terminos"
+                                    value="1"
+                                    required
+                                >
 
                                 <label class="form-check-label" for="terminos">
 
@@ -251,84 +316,113 @@ Publicar mascota | Huellitas EdoMex
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
+    // =====================================
+    // CALCULAR EDAD APROXIMADA
+    // =====================================
+
     const fechaNacimiento = document.getElementById("fecha_nacimiento_aproximada");
     const edad = document.getElementById("edad_aproximada");
 
-    fechaNacimiento.addEventListener("change", function () {
+    if (fechaNacimiento && edad) {
 
-        if (!this.value) {
-            edad.value = "";
-            return;
-        }
-
-        const nacimiento = new Date(this.value);
         const hoy = new Date();
+        const fechaActual = new Date(
+            hoy.getFullYear(),
+            hoy.getMonth(),
+            hoy.getDate()
+        );
 
-        let años = hoy.getFullYear() - nacimiento.getFullYear();
+        fechaNacimiento.max = [
+            hoy.getFullYear(),
+            String(hoy.getMonth() + 1).padStart(2, "0"),
+            String(hoy.getDate()).padStart(2, "0")
+        ].join("-");
 
-        if (
-            hoy.getMonth() < nacimiento.getMonth() ||
-            (hoy.getMonth() === nacimiento.getMonth() &&
-             hoy.getDate() < nacimiento.getDate())
-        ) {
-            años--;
-        }
+        fechaNacimiento.addEventListener("change", function () {
 
-        if (años >= 1) {
-
-            if (años === 1) {
-                edad.value = "1 año";
-            } else {
-                edad.value = años + " años";
+            if (!this.value) {
+                edad.value = "";
+                return;
             }
 
-        } else {
+            const nacimiento = new Date(this.value + "T00:00:00");
 
-            let meses =
-                (hoy.getFullYear() - nacimiento.getFullYear()) * 12 +
-                (hoy.getMonth() - nacimiento.getMonth());
+            if (isNaN(nacimiento.getTime()) || nacimiento > fechaActual) {
+                edad.value = "";
+                return;
+            }
 
-            if (hoy.getDate() < nacimiento.getDate()) {
+            let anios = fechaActual.getFullYear() - nacimiento.getFullYear();
+
+            let meses = fechaActual.getMonth() - nacimiento.getMonth();
+
+            if (fechaActual.getDate() < nacimiento.getDate()) {
                 meses--;
             }
 
-            if (meses <= 1) {
-                edad.value = "1 mes";
-            } else {
-                edad.value = meses + " meses";
+            if (meses < 0) {
+                anios--;
+                meses += 12;
             }
-        }
 
-    });
+            if (anios > 0) {
+                edad.value = `${anios} año(s)`;
+            } else if (meses > 0) {
+                edad.value = `${meses} mes(es)`;
+            } else {
+                edad.value = "Menos de un mes";
+            }
+
+        });
+    }
+
+    // =====================================
+    // VISTA PREVIA DE FOTOGRAFÍA
+    // =====================================
 
     const inputFoto = document.getElementById("fotografia");
-const preview = document.getElementById("previewImagen");
+    const preview = document.getElementById("previewImagen");
 
-inputFoto.addEventListener("change", function () {
+    if (inputFoto && preview) {
 
-    const archivo = this.files[0];
+        inputFoto.addEventListener("change", function () {
 
-    if (archivo) {
+            const archivo = this.files[0];
 
-        const lector = new FileReader();
+            if (!archivo) {
+                preview.src = "";
+                preview.style.display = "none";
+                return;
+            }
 
-        lector.onload = function (e) {
-            preview.src = e.target.result;
-            preview.style.display = "block";
-        };
+            if (!archivo.type.startsWith("image/")) {
+                this.value = "";
+                preview.src = "";
+                preview.style.display = "none";
+                alert("Selecciona un archivo de imagen válido.");
+                return;
+            }
 
-        lector.readAsDataURL(archivo);
+            const lector = new FileReader();
 
-    } else {
+            lector.onload = function (evento) {
+                preview.src = evento.target.result;
+                preview.style.display = "block";
+            };
 
-        preview.src = "";
-        preview.style.display = "none";
+            lector.onerror = function () {
+                preview.src = "";
+                preview.style.display = "none";
+                alert("No fue posible cargar la fotografía.");
+            };
 
+            lector.readAsDataURL(archivo);
+
+        });
     }
 
 });
-
-});
 </script>
+
 
 {% endblock %} 

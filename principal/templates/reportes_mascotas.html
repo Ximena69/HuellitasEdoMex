@@ -1,0 +1,168 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">Mascotas perdidas y encontradas</h1>
+
+        <p class="text-muted">
+            Ayúdanos a reunir a las mascotas con sus familias.
+            Consulta los reportes publicados en nuestra comunidad.
+        </p>
+
+        {% if user.is_authenticated and user.role == 'INTERESADO' or user.is_authenticated and user.role == 'RESPONSABLE' %}
+            <a href="{% url 'reportar_mascota' %}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                Registrar reporte
+            </a>
+
+            <a href="{% url 'mis_reportes' %}" class="btn btn-outline-secondary">
+                Mis reportes
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+
+            <form method="GET" class="row g-3 align-items-end">
+
+                <div class="col-md-5">
+                    <label for="tipo" class="form-label">Tipo de reporte</label>
+
+                    <select name="tipo" id="tipo" class="form-select">
+                        <option value="">Todos</option>
+
+                        <option value="Perdida"
+                            {% if tipo_seleccionado == 'Perdida' %}selected{% endif %}>
+                            Mascota perdida
+                        </option>
+
+                        <option value="Encontrada"
+                            {% if tipo_seleccionado == 'Encontrada' %}selected{% endif %}>
+                            Mascota encontrada
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-5">
+                    <label for="municipio" class="form-label">Municipio</label>
+
+                    <select name="municipio" id="municipio" class="form-select">
+                        <option value="">Todos los municipios</option>
+
+                        {% for ubicacion in ubicaciones %}
+                            <option value="{{ ubicacion.id_ubicacion }}"
+                                {% if municipio_seleccionado == ubicacion.id_ubicacion|stringformat:"s" %}selected{% endif %}>
+                                {{ ubicacion.municipio }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Filtrar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    {% if reportes %}
+
+        <div class="row g-4">
+
+            {% for reporte in reportes %}
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card h-100 shadow-sm border-0">
+
+                        {% if reporte.imagen %}
+                            <img src="{{ reporte.imagen.url }}"
+                                 class="card-img-top"
+                                 alt="Fotografía de {{ reporte.especie }}"
+                                 style="height: 230px; object-fit: cover;">
+                        {% else %}
+                            <div class="bg-light text-center py-5">
+                                <i class="bi bi-image text-secondary"
+                                   style="font-size: 3rem;"></i>
+                                <p class="text-muted mb-0">Sin fotografía</p>
+                            </div>
+                        {% endif %}
+
+                        <div class="card-body">
+
+                            <span class="badge {% if reporte.tipo == 'Perdida' %}bg-danger{% else %}bg-success{% endif %}">
+                                {{ reporte.get_tipo_display }}
+                            </span>
+
+                            <h5 class="card-title mt-3">
+                                {{ reporte.nombre_mascota|default:"Mascota sin nombre" }}
+                            </h5>
+
+                            <p>
+                                <strong>Especie:</strong>
+                                {{ reporte.especie }}
+                            </p>
+
+                            {% if reporte.raza %}
+                                <p>
+                                    <strong>Raza:</strong>
+                                    {{ reporte.raza }}
+                                </p>
+                            {% endif %}
+
+                            <p>
+                                <strong>Descripción:</strong>
+                                {{ reporte.descripcion }}
+                            </p>
+
+                            <p>
+                                <strong>Municipio:</strong>
+                                {{ reporte.ubicacion|default:"No especificado" }}
+                            </p>
+
+                            <p>
+                                <strong>Lugar:</strong>
+                                {{ reporte.direccion }}
+                            </p>
+
+                            <p>
+                                <strong>Fecha:</strong>
+                                {{ reporte.fecha_reporte }}
+                            </p>
+
+                            <div class="alert alert-light border mb-0">
+                                <strong>Contacto:</strong>
+                                {{ reporte.contacto }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-info text-center">
+            No hay reportes aprobados que coincidan con tu búsqueda.
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

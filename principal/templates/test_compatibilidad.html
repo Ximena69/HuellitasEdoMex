@@ -1,0 +1,550 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+Encuentra a tu compañero ideal | Huellitas EdoMex
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .test-inicio {
+        background: linear-gradient(135deg, #EFF6FF, #F8FAFC);
+        min-height: 75vh;
+        display: flex;
+        align-items: center;
+        padding: 60px 15px;
+    }
+
+    .test-tarjeta {
+        max-width: 850px;
+        margin: auto;
+        background: white;
+        border-radius: 28px;
+        padding: 55px 35px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+        text-align: center;
+    }
+
+    .test-huellita {
+        width: 85px;
+        height: 85px;
+        background: #DBEAFE;
+        color: #2563EB;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        margin: 0 auto 25px;
+    }
+
+    .test-tarjeta h1 {
+        color: #2563EB;
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+
+    .test-descripcion {
+        max-width: 600px;
+        margin: 18px auto;
+        color: #707b72;
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+
+    .test-info {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin: 30px 0;
+        color: #657367;
+        font-size: 0.95rem;
+    }
+
+    .test-info i {
+        color: #2563EB;
+        margin-right: 6px;
+    }
+
+    .btn-comenzar {
+        background: #2563EB;
+        color: white;
+        border: none;
+        padding: 15px 38px;
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: 0.25s;
+    }
+
+    .btn-comenzar:hover {
+        background: #1D4ED8;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .test-frase {
+        color: #89958a;
+        font-size: 0.9rem;
+        margin-top: 25px;
+    }
+
+    @media (max-width: 576px) {
+        .test-tarjeta {
+            padding: 40px 22px;
+        }
+
+        .test-tarjeta h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+{% if not mostrar_resultados %}
+<section class="test-inicio">
+
+    <div class="container">
+
+        <div class="test-tarjeta">
+
+            <div class="test-huellita">
+                <i class="bi bi-heart-fill"></i>
+            </div>
+
+            <span class="badge rounded-pill px-3 py-2 mb-3"
+                  style="background:#DBEAFE; color:#2563EB;">
+                TEST DE COMPATIBILIDAD
+            </span>
+
+            <h1>Encuentra a tu compañero ideal</h1>
+
+            <p class="test-descripcion">
+                Cada mascota tiene una personalidad y necesidades diferentes.
+                Cuéntanos un poco sobre tu hogar y tu estilo de vida.
+                Nosotros te ayudaremos a encontrar mascotas que puedan
+                adaptarse mejor a ti.
+            </p>
+
+            <div class="test-info">
+
+                <span>
+                    <i class="bi bi-clock"></i>
+                    2 minutos aproximadamente
+                </span>
+
+                <span>
+                    <i class="bi bi-list-check"></i>
+                    Preguntas sencillas
+                </span>
+
+                <span>
+                    <i class="bi bi-heart"></i>
+                    Recomendaciones personalizadas
+                </span>
+
+            </div>
+
+            <button type="button" class="btn btn-comenzar">
+                Comenzar test
+                <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+
+            <p class="test-frase">
+                Porque encontrar un hogar también significa encontrar
+                una conexión. <i class="bi bi-paw-fill"></i>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+{% endif %}
+
+<!-- CUESTIONARIO DE COMPATIBILIDAD -->
+{% if not mostrar_resultados %}
+<section id="seccion-cuestionario" class="py-5" style="display: none; background: #F8FAFC; min-height: 75vh;">
+
+    <div class="container" style="max-width: 850px;">
+
+        <div class="text-center mb-4">
+            <span class="badge rounded-pill px-3 py-2 mb-3"
+                  style="background: #DBEAFE; color: #2563EB;">
+                DESCUBRE TU COMPATIBILIDAD
+            </span>
+
+            <h2 class="fw-bold" style="color: #2563EB;">
+                Conozcamos tu estilo de vida
+            </h2>
+
+            <p class="text-secondary">
+                Responde estas preguntas para encontrar a tu compañero ideal.
+            </p>
+        </div>
+
+        <!-- Barra de progreso -->
+
+        <div class="mb-4">
+            <div class="d-flex justify-content-between mb-2">
+                <span class="small fw-semibold text-secondary">Tu progreso</span>
+                <span id="numero-pregunta" class="small fw-semibold" style="color: #2563EB;">
+                    1 de 7
+                </span>
+            </div>
+
+            <div class="progress" style="height: 9px; border-radius: 20px;">
+                <div id="barra-progreso"
+                     class="progress-bar"
+                     style="width: 14.28%; background: #2563EB;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Aquí aparecerán las preguntas -->
+
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+            <form id="formulario-compatibilidad" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="especie" id="respuesta-especie">
+
+<input type="hidden" name="tamano" id="respuesta-tamano">
+
+<input type="hidden" name="actividad" id="respuesta-actividad">
+
+<input type="hidden" name="ninos" id="respuesta-ninos">
+
+<input type="hidden" name="otras_mascotas" id="respuesta-otras-mascotas">
+            <div id="contenido-pregunta">
+                <!-- Las preguntas se mostrarán aquí -->
+            </div>
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <button type="button" id="btn-anterior"
+                        class="btn btn-outline-secondary rounded-3 px-4"
+                        disabled>
+                    <i class="bi bi-arrow-left me-2"></i>
+                    Anterior
+                </button>
+
+                <button type="button" id="btn-siguiente"
+                        class="btn btn-primary rounded-3 px-4">
+                    Siguiente
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+                </form>
+            </div>
+
+        </div>
+
+        <p class="text-center text-muted small mt-4">
+            <i class="bi bi-heart-fill me-1" style="color: #F97316;"></i>
+            Cada respuesta nos acerca a tu futuro compañero.
+        </p>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+{% if mostrar_resultados %}
+
+<section class="py-5" style="background:#F8FAFC; min-height:75vh;">
+
+    <div class="container" style="max-width:1000px;">
+
+        <div class="text-center mb-5">
+
+            <span class="badge rounded-pill px-3 py-2 mb-3"
+                  style="background:#DBEAFE; color:#2563EB;">
+                TUS RESULTADOS
+            </span>
+
+            <h2 class="fw-bold" style="color:#2563EB;">
+                ¡Encontramos posibles compañeros para ti!
+            </h2>
+
+            <p class="text-secondary">
+                Estas mascotas tienen características que coinciden con tus respuestas.
+            </p>
+
+        </div>
+
+        {% if resultados %}
+
+            <div class="row g-4">
+
+                {% for resultado in resultados %}
+
+                    <div class="col-md-6">
+
+                        <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+
+                            {% with foto=resultado.mascota.fotos.first %}
+
+                                {% if foto and foto.url_imagen %}
+
+                                    <img src="{{ foto.url_imagen.url }}"
+                                         class="card-img-top"
+                                         alt="{{ resultado.mascota.nombre }}"
+                                         style="height:250px; object-fit:cover;">
+
+                                {% else %}
+
+                                    <div class="d-flex align-items-center justify-content-center"
+                                         style="height:250px; background:#EFF6FF; color:#2563EB;">
+
+                                        <i class="bi bi-image" style="font-size:4rem;"></i>
+
+                                    </div>
+
+                                {% endif %}
+
+                            {% endwith %}
+
+                            <div class="card-body p-4">
+
+                                <h4 class="fw-bold">
+                                    {{ resultado.mascota.nombre }}
+                                </h4>
+
+                                <p class="text-secondary mb-3">
+                                    {{ resultado.mascota.especie }}
+                                </p>
+
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="fw-semibold">Compatibilidad</span>
+                                    <span class="fw-bold" style="color:#2563EB;">
+                                        {{ resultado.porcentaje }}%
+                                    </span>
+                                </div>
+
+                                <div class="progress mb-4" style="height:10px;">
+                                    <div class="progress-bar"
+                                         role="progressbar"
+                                         style="width:{{ resultado.porcentaje }}%; background:#2563EB;">
+                                    </div>
+                                </div>
+
+                                <h6 class="fw-bold">¿Por qué puede ser compatible?</h6>
+
+                                <ul class="text-secondary ps-3 mb-0">
+                                    {% for coincidencia in resultado.coincidencias %}
+                                        <li class="mb-2">{{ coincidencia }}</li>
+                                    {% empty %}
+                                        <li>No se encontraron coincidencias específicas.</li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center bg-white rounded-4 shadow-sm p-5">
+
+                <i class="bi bi-search" style="font-size:3rem; color:#2563EB;"></i>
+
+                <h4 class="fw-bold mt-3">Todavía no hay mascotas disponibles</h4>
+
+                <p class="text-secondary">
+                    Cuando haya nuevas mascotas disponibles, podrás encontrar aquí tus recomendaciones.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+        <div class="text-center mt-5">
+
+            <a href="{% url 'adoptar' %}" class="btn btn-primary rounded-3 px-4">
+                Ver catálogo de mascotas
+                <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+
+            <p class="text-muted small mt-3">
+                Estas recomendaciones son orientativas y no garantizan la compatibilidad definitiva.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const preguntas = [
+        {
+            texto: "¿Dónde vives?",
+            descripcion: "Cuéntanos cómo es tu hogar.",
+            opciones: ["Casa", "Departamento"]
+        },
+        {
+            texto: "¿Qué espacio tienes disponible?",
+            descripcion: "Queremos conocer el espacio donde vivirá tu compañero.",
+            opciones: ["Patio amplio", "Patio pequeño", "No tengo patio"]
+        },
+        {
+            texto: "¿Cuánto tiempo puedes dedicarle a tu mascota?",
+            descripcion: "Piensa en el tiempo que tienes para jugar, pasear y convivir.",
+            opciones: ["Poco tiempo", "Tiempo moderado", "Mucho tiempo"]
+        },
+        {
+            texto: "¿Hay niños en tu hogar?",
+            descripcion: "Esto nos ayudará a considerar la convivencia.",
+            opciones: ["Sí", "No"]
+        },
+        {
+            texto: "¿Actualmente tienes otras mascotas?",
+            descripcion: "Queremos saber si tu nuevo compañero convivirá con otros animales.",
+            opciones: ["Sí", "No"]
+        },
+        {
+            texto: "¿Qué mascota prefieres?",
+            descripcion: "Puedes elegir la especie que más te guste.",
+            opciones: ["Perro", "Gato", "Cualquiera"]
+        },
+        {
+            texto: "¿Qué tamaño prefieres?",
+            descripcion: "Elige el tamaño que mejor se adapte a tu hogar.",
+            opciones: ["Pequeño", "Mediano", "Grande", "Cualquiera"]
+        }
+    ];
+
+    let preguntaActual = 0;
+    const respuestas = {};
+
+    const bienvenida = document.querySelector('.test-inicio');
+    const cuestionario = document.getElementById('seccion-cuestionario');
+    const contenido = document.getElementById('contenido-pregunta');
+    const barra = document.getElementById('barra-progreso');
+    const numero = document.getElementById('numero-pregunta');
+    const anterior = document.getElementById('btn-anterior');
+    const siguiente = document.getElementById('btn-siguiente');
+    const comenzar = document.querySelector('.btn-comenzar');
+    const formulario = document.getElementById('formulario-compatibilidad');
+
+    comenzar.addEventListener('click', function () {
+        bienvenida.style.display = 'none';
+        cuestionario.style.display = 'block';
+        mostrarPregunta();
+        cuestionario.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function mostrarPregunta() {
+
+        const pregunta = preguntas[preguntaActual];
+        const respuestaGuardada = respuestas[preguntaActual];
+
+        contenido.innerHTML = `
+            <div class="text-center mb-4">
+                <span class="badge rounded-pill mb-3"
+                      style="background:#DBEAFE; color:#2563EB;">
+                    PREGUNTA ${preguntaActual + 1}
+                </span>
+
+                <h3 class="fw-bold mb-3" style="color:#1E293B;">
+                    ${pregunta.texto}
+                </h3>
+
+                <p class="text-secondary">
+                    ${pregunta.descripcion}
+                </p>
+            </div>
+
+            <div class="row g-3">
+                ${pregunta.opciones.map((opcion, indice) => `
+                    <div class="col-12">
+                        <label class="opcion-test d-flex align-items-center gap-3 p-3 rounded-3"
+                               style="border:2px solid ${respuestaGuardada === opcion ? '#2563EB' : '#E2E8F0'};
+                                      background:${respuestaGuardada === opcion ? '#EFF6FF' : '#FFFFFF'};
+                                      cursor:pointer; transition:0.2s;">
+
+                            <input type="radio"
+                                   name="respuesta"
+                                   value="${opcion}"
+                                   ${respuestaGuardada === opcion ? 'checked' : ''}
+                                   style="accent-color:#2563EB;">
+
+                            <span class="fw-semibold text-dark">
+                                ${opcion}
+                            </span>
+
+                            <i class="bi bi-check-circle-fill ms-auto"
+                               style="color:#2563EB; display:${respuestaGuardada === opcion ? 'block' : 'none'};">
+                            </i>
+                        </label>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+
+        contenido.querySelectorAll('input[name="respuesta"]').forEach(input => {
+            input.addEventListener('change', function () {
+                respuestas[preguntaActual] = this.value;
+                mostrarPregunta();
+            });
+        });
+
+        numero.textContent = `${preguntaActual + 1} de ${preguntas.length}`;
+        barra.style.width = `${((preguntaActual + 1) / preguntas.length) * 100}%`;
+
+        anterior.disabled = preguntaActual === 0;
+
+        siguiente.textContent = preguntaActual === preguntas.length - 1
+            ? 'Terminar'
+            : 'Siguiente';
+
+        siguiente.innerHTML = preguntaActual === preguntas.length - 1
+            ? 'Terminar <i class="bi bi-check-lg ms-2"></i>'
+            : 'Siguiente <i class="bi bi-arrow-right ms-2"></i>';
+
+        siguiente.disabled = !respuestas[preguntaActual];
+    }
+
+    anterior.addEventListener('click', function () {
+        if (preguntaActual > 0) {
+            preguntaActual--;
+            mostrarPregunta();
+        }
+    });
+
+    siguiente.addEventListener('click', function () {
+
+        if (!respuestas[preguntaActual]) {
+            return;
+        }
+
+        if (preguntaActual < preguntas.length - 1) {
+            preguntaActual++;
+            mostrarPregunta();
+        } else {
+
+    document.getElementById('respuesta-actividad').value = respuestas[2];
+    document.getElementById('respuesta-ninos').value = respuestas[3];
+    document.getElementById('respuesta-otras-mascotas').value = respuestas[4];
+    document.getElementById('respuesta-especie').value = respuestas[5];
+    document.getElementById('respuesta-tamano').value = respuestas[6];
+
+    formulario.submit();
+}
+    });
+
+});
+</script>
+
+
+{% endblock %}
